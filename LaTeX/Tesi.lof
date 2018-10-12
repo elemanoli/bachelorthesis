@@ -1,0 +1,21 @@
+\select@language {italian}
+\select@language {italian}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Scambio di chiavi Diffie-Hellman, schema di funzionamento.\relax }}{5}{figure.caption.4}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Livelli di crittografia dell'onion routing.\relax }}{7}{figure.caption.5}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Circuito Tor.\relax }}{8}{figure.caption.6}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Procedura per la costruzione di un circuito e richiesta ad un server web.\relax }}{10}{figure.caption.7}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Scenario di rete con router controllato.\relax }}{12}{figure.caption.8}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Schema di funzionamento del tool meek.\relax }}{14}{figure.caption.9}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Effetto di un CellFlood su un Onion Router.}}{16}{figure.caption.10}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Funzionamento dei client puzzles.\relax }}{17}{figure.caption.11}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Sniper Attack basilare.\relax }}{19}{figure.caption.12}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Sniper Attack avanzato.\relax }}{20}{figure.caption.13}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Sniper Attack con difesa e senza difesa.\relax }}{24}{figure.caption.15}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Loop singolo a sinistra e loop multipilo a destra.\relax }}{26}{figure.caption.16}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces TBC, soluzione proposta contro i loop nella rete.\relax }}{27}{figure.caption.17}
+\addvspace {10\p@ }

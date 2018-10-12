@@ -1,0 +1,61 @@
+\chapter*{Introduzione}
+\addcontentsline{toc}{chapter}{Introduzione}
+Ogni volta che inviamo una e-mail, visitiamo un sito web o chattiamo con qualcuno, i nostri pacchetti attraversano vari router/server che possono controllare i dati inoltrati. Anche se i dati contenuti nei pacchetti sono crittografati, l'IP header rimane comunque visibile, ed � quindi possibile scoprire le identit� del mittente e del destinatario. Intercettando e analizzando i pacchetti, una spia pu� ottenere un numero considerevole di informazioni circa l'identit� dei soggetti della comunicazione, l'applicazione che li ha generati e talvolta il loro contenuto.
+I sistemi di anonymous routing, come l'\emph{Onion Routing}\cite{tor}, nascono per garantire la segretezza nelle comunicazioni e l'anonimato delle parti coinvolte.
+
+L'Onion routing � il pi� diffuso sistema di comunicazione anonimo a bassa latenza, permette web browsing, invio di e-mail, messaggistica istantanea e altri servizi. Esso si basa sulla rete \emph{Tor (The Onion Router)}, formata da un gruppo di volontari, che donano la propria banda per permettere agli utenti di aumentare la loro privacy e la loro sicurezza. La rete viene anche utilizzata come strumento per aggirare censure e blocchi imposti dagli ISP e, pi� in generale, il controllo delle comunicazioni da parte dei governi e dei regimi repressivi. Milioni di persone ogni giorno usano Tor per svolgere le loro attivit� quotidiane (come e-mail, Facebook, Twitter) senza il timore di essere monitorati. Per questo in alcuni paesi del mondo, come Cina, Iran, Kazakistan ecc. si tenta di arginare il pi� possibile la diffusione e l'utilizzo di Tor. In altri paesi, come gli Stati Uniti, viene usato dalla Marina Militare per svolgere operazioni di intelligence e dalle forze dell'ordine per controllare siti web, senza lasciare tracce di indirizzi IP governativi. Anche organizzazioni come Wikileaks utilizzano Tor per scambiare informazioni e tutelare i propri informatori. Attualmente, la rete conta circa 7000 router attivi e approssimativamente 2 milioni di client che si collegano ogni giorno \cite{tormetrics}.
+
+
+
+%\emph{anonimato}, \emph{non linkabilit�}, \emph{inosservabilit�}.
+
+
+
+%\cite{tor}, nascono per garantire segretezza nelle comunicazioni, in particolare cercando di raggiungere degli obiettivi fondamentali:
+%\begin{description}
+%\item \textbf{Anonimity}, definita come lo stato di non essere identificabili all'interno di un insieme di soggetti.
+%\item \textbf{Unlinkability}.
+%\item \textbf{Unobservability}.
+%\end{description} 
+
+%i client devono potersi scambiare messaggi in totale anonimato, questo significa che essi non devono essere identificabili all'interno di un insieme di soggetti.
+
+
+%
+%\lipsum[1-4]
+%wikileaks
+
+%Essa � costruita sopra ad internet...
+
+%Perch� anonimato, blocco dei governi, cos � attacco dos
+
+
+%non lascia traccia sui server, IP, vedi survey, gestita da volontari, %dati riguardanti utilizzo di tor, grafici
+
+%\section{Perch\`e l'anonimato}
+
+%\section{Blocco da parte dei governi}
+
+\subsubsection{Attacchi DoS}
+L'acronimo \emph{DoS}, abbreviazione di \emph{denial of service}, letteralmente negazione del servizio, indica una tipologia di attacchi informatici che mirano ad esaurire le risorse di un sistema, tipicamente un web server o un router, fino a renderlo non pi� in grado di fornire i propri servizi ai client. Esso non � un attacco caratteristico della rete Tor, dato che, attraverso varie tecniche, pu� essere effettuato contro qualsiasi sistema collegato ad Internet che offre servizi TCP. Quello che � possibile fare, per�, � sfruttare delle debolezze di progettazione del protocollo di Tor per condurre degli attacchi che in una normale rete TCP non sarebbero possibili. Come nei classici attacchi DoS, anche quelli che sfruttano le vulnerabilit� di Tor mirano al consumo di banda, di risorse computazionali o di memoria. Gli attacchi DoS sulle reti di anonimato possono essere suddivisi in due categorie: \emph{blanket blocking}, che blocca l'accesso all'intera rete senza attaccare in modo diretto alcun router, come ad esempio i blocchi imposti dai governi, oppure \emph{targeted attack}, ovvero attacchi con un obiettivo specifico, che tentano di portare nodi della rete offline. Portando offline i router portanti della rete, � possibile, probabilisticamente parlando, deanonimizzare servizi nascosti, scoprire l'identit� di due interlocutori o comunque causare un calo di prestazioni della rete che pu� indurre gli utenti ad utilizzare altri metodi di comunicazione meno sicuri di Tor. 
+
+
+
+%Inoltre, molto spesso, vengono utilizzati per scoprire l'identit� di un server o per 
+
+           
+%\lipsum[1]
+
+%\chapter{Introduzione}
+%L'introduzione costituisce la prima parte dell'elaborato ed estende quanto contenuto nel
+%sommario, orientando meglio la lettura. In essa vanno inserite le informazioni che stanno a
+%monte, logicamente e cronologicamente, al lavoro svolto nella tesi. Si compone
+%essenzialmente dei seguenti punti:
+%\begin{itemize}
+%\item spiegazione della natura del problema considerato
+%\item descrizione dei contenuti reperibili in letteratura relativamente al problema in
+%questione, corredata da esaurienti citazioni bibliografiche
+%\item scopo del lavoro
+%\item indicazione dei metodi di soluzione del problema
+%\item elenco schematico del contenuto dei vari capitoli.
+%\end{itemize}
