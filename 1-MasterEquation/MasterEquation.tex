@@ -2,7 +2,7 @@
 In questo capitolo vediamo come si possono ricavare la distribuzione binomiale negativa e la Log Series modellizzando la dinamica dell'abbondanza delle specie attraverso un'equazione che descrive la nascita e la morte degli individui : la \emph{birth-death master equation}.
 
 \section{Distribuzione binomiale negativa}
-La distribuzione binomiale negativa può essere derivata dai principi primi alla base dei processi biologici: sia $\emph{P}_{\emph{n,s}}(t)$ la probabilità che ad un certo tempo t, la specie \emph{s} abbia esattamente \emph{n} individui, con \emph{s}\in$\left \{ 1,...,S \right \}$. Assumiamo che la dinamica della popolazione di ogni specie sia governata da due termini: i rate di nascita e di morte, rispettivamente, $\emph{b}_\emph{{n,s}}$ e $\emph{d}_\emph{{n,s}}$, per una specie \emph{s} con \emph{n} individui.
+%La distribuzione binomiale negativa può essere derivata dai principi primi alla base dei processi biologici: sia $\emph{P}_{\emph{n,s}}(t)$ la probabilità che ad un certo tempo t, la specie \emph{s} abbia esattamente \emph{n} individui, con \emph{s}\in$\left \{ 1,...,S \right \}$. Assumiamo che la dinamica della popolazione di ogni specie sia governata da due termini: i rate di nascita e di morte, rispettivamente, $\emph{b}_\emph{{n,s}}$ e $\emph{d}_\emph{{n,s}}$, per una specie \emph{s} con \emph{n} individui.
 L'equazione che regola l'evoluzione di $\emph{P}_{\emph{n,s}}(t)$ per $\emph{n}\ge0$ è la seguente:
 \begin{equation}
 \frac{\partial\emph{P}_{\emph{n,s}}(t)}{\partial\emph{t}}=
@@ -59,10 +59,10 @@ $$
 1=\sum_{n=1}^\infty \emph{P}_{\emph{n,s}}=P_\emph{0,s}\frac{\nu}{\emph{b}_\emph{s}}\sum_{n=0}^\infty\frac{\emph{x}_\emph{s}^{\emph{n}}}{\emph{n}}=P_\emph{0,s}\frac{\nu}{\emph{b}_\emph{s}}[-\log(1-\emph{x}_\emph{s})].
 $$
 Dunque abbiamo:
-\begin{equation}
-    \emph{P}_\emph{n,s}^{\emp{LS}}=-\frac{1}{\log(1-\emph{x}_\emph{s})}\frac{\emph{x}_\emph{s}^{\emph{n}}}{\emph{n}}.
-\label{eq:fisherdist}
-\end{equation}
+%\begin{equation}
+%    \emph{P}_\emph{n,s}^{\emp{LS}}=-\frac{1}{\log(1-\emph{x}_\emph{s})}\frac{\emph{x}_\emph{s}^{\emph{n}}}{\emph{n}}.
+%\label{eq:fisherdist}
+%\end{equation}
 Anche in questo caso assumiamo che le specie siano equivalenti e possiamo dunuq omettere l'indice \emph{s}.
 
 \subsection{La distribuzione di Fisher come caso particolare della binomiale negativa}
