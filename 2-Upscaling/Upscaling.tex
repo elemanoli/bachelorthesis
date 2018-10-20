@@ -1,0 +1,127 @@
+\chapter{Il metodo di upscaling}
+In questa sezione vediamo come è possibile ricostruire la biodiversità di un intero ecosistema a partire da un campione ridotto di SAD. \\
+(spiegare che il modello nasce in ambito ecologico)\\
+(come viene fatto il campionamento)\\
+(parlare in generale, numero di singleton, specie rare)\\
+(metodo di Chao??)\\
+\\
+\section{Metodo della binomiale negativa}
+Il quadro analitico all'interno del quale si svolge questo lavoro è bastato sui seguenti passaggi:
+\begin{itemize}
+    \item Campionare una frazione $\emph{p}^*$ dell'intera foresta e ottenere il vettore delle abbondanze delle $S^*$ specie campionate, $\emph{n}_{\emph{p}^*}={\emph{n}_1,\emph{n}_2,...,\emph{n}_{S^*}}$
+    \item Usare una combinazione lineare di binomiali negative con lo stesso $\hat \xi_{\emph{p}^*}$ e diversi valori di \emph{r} per fittare la SAD sperimentale al desiderato grado di accuratezza.
+\end{itemize}
+Di seguito analizzeremo in dettaglio il metodo,le proprietà e i passaggi che ci permettono di ottenere le informazioni desiderate.\\
+Quando facciamo upscaling siamo interessati alla SAD ed al numero totale di specie presenti a scala totale,cioè in tutta l'area della foresta\emph{A}.
+Denotiamo con P(\emph{n}|1) la probabilità che una specie abbia esattamente \emph{n} individui a scala totale(qui con il numero 1 si denota l'intera foresta), anche nota come \emph{abbondanza relativa delle specie} RSA.
+Notiamo che P(\emph{n}|1) deve essere definita solamente per $\emph{n}\ge1$ poiché, a scala totale, una data specie deve avere almeno un individuo.
+In questo contesto si ipotizza che la SAD segua una distribuzione binomiale negativa, \emph{P}(\emph{n}|\emph{r},$\xi$) di parametri (\emph{r},$\xi$):
+\begin{equation}
+ P(\emph{n}|1)=\emph{c}(\emph{r},\xi)\emph{P}(\emph{n}|\emph{r},\xi)
+ \label{eq:NBfunctform}
+\end{equation}
+\\
+con 
+\begin{equation}
+    \emph{P}_\emph{n}=\binom{n+\emph{r}-1}{n}\xi^n(1-\xi)^{\emph{r}},      
+    \emph{c}(\emph{r}\xi)=\frac{1}{1-(1-\xi)^{\emph{r}}}
+\end{equation}
+dove \emph{c} è la costante di normalizzazione.
+Quest'ultima è stata calcolata imponendo $\sum_{\emph{n}=1}^\infty P(\emph{n}|1)$, dove la somma parte da 1 poiché le specie con abbondanza nulla a scala totale saranno assenti anche a scale ridotte.
+Notiamo che \emph{p}(\emph{n}|\emph{r},$\xi$) è normalizzata per $\emph{n}\ge0$: questo perché, nei sotto campioni, esiste una probabilità non nulla di trovare una specie, presente nell'intera foresta, avente \emph{n}=0 individui.In questo modo si tiene conto del numero di specie mancanti nei sotto campioni.\\
+Consideriamo ora un campione di foresta di area \emph{a} e definiamo \emph{p}=\emph{a}/\emph{A} la scala del campione, cioè la frazione di foresta osservata.
+Come primo passaggio calcoliamo la RSA del campione assumendo che quest'ultima non sia influenzata da correlazioni spaziali. Quest'ipotesi è ben soddisfatta ed è stata verificata usando dati di foreste generati \emph{in silico} a vari gradi di correlazione spaziale.(citare qualcosa, ci devo tornare sopra??)\\
+Sotto queste ipotesi la probabilità che una specie presenti \emph{k} individui in un'area \emph{a=pA}, condizionata dal fatto che presenta \emph{n} individui nella regione totale \emph{A} è data dalla distribuzione binomiale:
+\begin{equation}
+\emph{P}_\emph{binom}(\emph{k|p,n})=\begin{cases} \binom{\emph{n}}{\emph{k}}\emph{p}^\emph{k}(1-\emph{p})^{\emph{n-k}}, & \mbox{se }\emph{k}=0,...,\emph{n} \\ 0, & \mbox{se }n\mbox{\emph{k>n}}
+\end{cases}
+\end{equation}
+
+Infatti,in assenza di correlazioni spaziali, la probabilità che uno degli individui di una specie si trovi in una regione di area \emph{a} è esattamente \emph{p}.(?controllare?)
+
+Mostriamo ora un risultato chiave per il metodo di upscaling:
+\subsection{Proprietà di auto-somiglianza della distribuzione binomiale negativa}
+Sia P(\emph{n}|1)=\emph{c}(\emph{r},$\xi$)\emph{P}(\emph{n}|\emph{r},$\xi$) la RSA della foresta a scala totale e denotiamo con \emph{P}(\emph{k}|\emph{r},$\xi$) la probabilità che una specie abbia abbondanza \emph{k} alla scala \emph{p}$\in$(0,1), condizionata dal fatto che alla scala totale \emph{A} sono presenti \emph{n} individui di quella specie.
+Se \emph{P}(\emph{k}|\emph{n,p})=$\emph{P}_\emph{binom}(\emph{n}|\emph{r},\xi)$ segue una distribuzione binomiale, allora la RSA $\emph{P}_\emph{sub}(\emph{k}|\emph{p})$ alla scala di campionamento \emph{p} è ancora una binomiale negativa per $\emph{k}\ge1$ con il parametro $\xi$ riscalato e lo stesso \emph{r}:
+\begin{equation}
+    \emph{P}_\emph{sub}(\emph{k}|\emph{p})=\begin{cases} \emph{c}(\emph{r},\xi)\emph{P}(\emph{k}|\emph{r},\xi), & \mbox{ }\emph{k}\ge1 \\ 1-\emph{c}(\emph{r},\xi)/\emph{c}(\emph{r},\hat\xi_{\emph{p}}), & \mbox{ }\mbox{\emph{k=0}}
+    \end{cases}
+\label{eq:RSAbinom}
+\end{equation}
+
+con 
+\begin{equation}
+    \hat\xi_{\emph{p}}=\frac{\emph{p}\xi}{1-\xi(1-\emph{p})}
+\label{eq:NBparametersub}
+\end{equation}
+
+DIMOSTRAZIONE?\\
+\\
+Ricordiamo che questo metodo fa uso solamente delle informazioni che si possono ottenere da un campione ad una certa scala $p^*$, infatti noi abbiamo informazioni solo sulle abbondanze delle $S^*\le S$ specie presenti nel campione esaminato. Denotando il numero di specie di abbondanza \emph{k} alla scala $p^*$ con $S^*(\emph{k})$, otteniamo, per $\emph{k}\ge 1$:
+\begin{equation}
+    \frac{S^*(\emph{k})}{S^*}\equiv P(\emph{k}|\emph{p}^*)=\frac{\emph{P}_\emph{sub}(\emph{k}|\emph{p}^*)}{\sum_{k^{'} \ge 1}^{} \emph{P}_\emph{sub}(\emph{k}^{'}|\emph{p}^{*})}
+    =\frac{\emph{P}(\emph{k}|\emph{r},\hat\xi_{\emph{p}^*})}{\sum_{k^{'} \ge 1}^{} \emph{P}(\emph{k}^{'}|\emph{r},\hat \xi_{\emph{p}^*})}
+    =\emph{c}(\emph{r},\hat\xi_{\emph{p}^*})\emph{P}(\emph{k}|\emph{r},\hat \xi_{\emph{p}^*})
+\end{equation}
+che, dalla (\ref{eq:NBfunctform}), è una binomiale negativa normalizzata per $\emph{k}\ge 1$, mentre $\emph{P}(\emph{k}|\emph{r},\hat \xi_{\emph{p}^*}$ è normalizzata per $\emph{k}\ge 0$.
+Per quanto detto sopra otteniamo dunque il seguente risultato: partendo da una distribuzione binomiale negativa per la RSA a scala globale, anche la RSA a scala ridotta risulta distribuita secondo una binomiale negativa di parametri lo stesso \emph{r} e $\hat \xi_\emph{p}^*$ riscalato.
+Una RSA avente la proprietà di avere la stessa forma funzionale a scale differenti è detta essere \emph{invariante per forma}.
+
+\subsection{Il numero di specie a scala totale}
+Fittando la RSA dei dati alla scala $\emph{p}^*$ possiamo dunque trovare i parametri \emph{r} e $\hat \xi_\emph{p}^*$ e, invertendo l'equazione (\ref{eq:NBparametersub}), troviamo:
+\begin{equation}
+    \xi=\frac{\hat \xi_{\emph{p}^*}}{\emph{p}^*+\hat \xi_{\emph{p}^*}(1-\emph{p}^*)}
+\label{eq:NBparameter}
+\end{equation}
+Usando ancora la (\ref{eq:NBparametersub}) per eliminare $\xi$ dall'ultima equazione, otteniamo la seguente relazione per il parametro $\xi$ alle due scale \emph{p} e $\emph{p}^*$:
+\begin{equation}
+    \hat\xi_\emph{p}=\frac{p \hat \xi_{\emph{p}^*}}{\emph{p}^*+\hat\xi_{\emph{p}^*}(\emph{p}-\emph{p}^*)}\equiv U(\emph{p},\emph{p}^*|\hat \xi_{\emph{p}^*})
+\end{equation}
+dalla quale, ovviamente, è possibile riottenere sia la (\ref{eq:NBparametersub}) che la (\ref{eq:NBparameter}) ponendo $\xi \equiv \hat \xi_{\emph{p}=1} $.
+
+Vogliamo ora determinare la relazione tra il numero totale di specie S alla scala totale \emph{p}=1 e il numero totale di specie osservate localmente $S_\emph{p}$ alla scala \emph{p}.
+D'ora in avanti per denotare il numero di specie alla scala locale useremo la notazione $S^*\equiv S_{\emph{p}^*}$.
+Notiamo che:
+\begin{equation}
+\emph{P}_\emph{sub}(\emph{k=0}|\emph{p}^*)=\frac{S-S^*}{S}
+\end{equation}
+\begin{equation}
+    \emph{P}_\emph{sub}(\emph{k=0}|\emph{p}^*)=\frac{S^*(\emph{k})}{S}.
+\end{equation}
+Usando la seconda delle (\ref{eq:RSAbinom}), il numero di specie presenti nell'intera foresta è dato, in termini dei dati del campione osservato, da:
+\begin{equation}
+S=\frac{S^*}{1-\emph{P}_\emph{sub}(\emph{k}=0|\emph{p}^*)}=S^*\frac{1-(1-\xi)^r}{1-(1-\hat \xi_{\emph{p}}^*)^r}
+\label{eq:upscaleNB}
+\end{equation}
+% ---------------------  ESEMPI UTILI PRONTI ALL'USO  ----------------------------
+%TERZO capitolo della tesi. Esempio di citazione doppia \cite{Munoz-Lipo,Vas}.
+%
+%Esempio di figura in \figurename\ \ref{FIG:LogoUniPD}.
+%
+%\begin{figure}[!htbp]
+%\centering
+%\includegraphics[width=0.25\textwidth]{./figure//LogoUniPD}
+%\caption{Esempio di figura.}
+%\label{FIG:LogoUniPD}
+%\end{figure}
+%
+%Esempio di tabella in \tablename\ \ref{TAB:Esempio}.
+%
+%\begin{table}[!htbp]
+%\centering
+%\renewcommand{\arraystretch}{1.3}
+%\caption{Esempio di tabella.}
+%\begin{tabular}{cc}
+%\hline
+%Nome & Valore \\
+%\hline
+%a & 1 \\
+%b & 2 \\
+%c & 3 \\
+%d & 4 \\
+%e & 5 \\
+%f & 6 \\
+%\hline
+%\end{tabular}
+%\label{TAB:Esempio}
+%\end{table}

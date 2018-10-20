@@ -21,8 +21,6 @@
 \usepackage{subfigure}
 \usepackage{caption}
 
-
-
 %%%aggiunti io
 \usepackage{hyperref}
 \newcommand{\mail}[1]{\href{mailto:#1}{\texttt{#1}}}
@@ -32,19 +30,8 @@
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
 \usepackage{lipsum}
+\usepackage{pdfpages}
 %%%%%%%
-\graphicspath{{./Figure/}}
-
-\hypersetup{
-  % pdfpagelayout=SinglePage, % default
-  % pdfpagemode=UseOutlines,  % default
-  % bookmarksopen,            % default
-  % bookmarksopenlevel=2,     % default
-  linkcolor=black,
-  pdftitle=Attacchi di tipo Denial of Service sulla rete di anonimato Tor,
-  pdfauthor=Nicola Marinello,
-  pdfsubject=Tesi di Laurea in Ingegneria dell'Informazione,
-  pdfkeywords=tesi laurea triennale}
   % Queste informazioni non vengono stampate, ma sono conservate nel documento pdf. Sono consultabili col menu "File>Document Properites>Description". Vengono buone a scopi archivistici.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -58,36 +45,30 @@
 % del terzo capitolo):                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\makeatletter
-\@addtoreset{equation}{section}
-\makeatother
-\renewcommand{\theequation}%
-  {\thesection.\arabic{equation}}
+%\makeatletter
+%\@addtoreset{equation}{section}
+%\makeatother
+%\renewcommand{\theequation}%
+% {\thesection.\arabic{equation}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Dati per la prima pagina della tesi %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\facolta{Ingegneria}
-\corsodilaureatriennale{Ingegneria dell'Informazione}
-\titolo{Attacchi di tipo Denial of Service\\ sulla rete di anonimato Tor}
-% \relatore[Ch.mo Prof./Dott./Ing.]{Nicola Laurenti}
-\relatore[Ch.mo Prof.]{Nicola Laurenti}
-\laureando{Nicola Marinello}
-\matricola{1071102}
-\annoaccademico{2015-2016}
-%\dedica{Alla mia famiglia e ad Eleonora.}
-
 %%%%%%%%%%%%%%%%%%%%
 % Inizio documento %
 %%%%%%%%%%%%%%%%%%%%
+
 
 \begin{document}
 
 \frontmatter
 
-\maketitle
-
+\includepdf{Frontespizio_Laurea.pdf}
+\clearpage
+\thispagestyle{empty}
+\phantom{a}
+%\maketitle
 \include{./Abstract/Sommario}
 
 \clearemptydoublepage
@@ -109,38 +90,37 @@
 
 \clearemptydoublepage
 
-\include{./1-Background/Background}
+\include{./1-MasterEquation/MasterEquation}
 
 \clearemptydoublepage
 
-\include{./2-ReteTor/ReteTor}
+\include{./2-Upscaling/Upscaling}
 
 \clearemptydoublepage
 
-\include{./3-BlanketBlocking/BlanketBlocking}
+%\include{./3-/}
 
 \clearemptydoublepage
 
-\include{./4-TargetedAttack/TargetedAttack}
 
 \clearemptydoublepage
 
-\include{./5-Conclusioni/Conclusioni}
+\include{./4-Conclusioni/Conclusioni}
 
 %\backmatter
 
 \clearemptydoublepage
 
-%\include{./6-Ringraziamenti/Ringraziamenti} % non obbligatorio
+%\include{./5-Ringraziamenti/Ringraziamenti} % non obbligatorio
 %\clearemptydoublepage
 
-\include{./7-Bibliografia/Bibliografia}
+\include{./6-Bibliografia/Bibliografia}
 
 \appendix
 
 \clearemptydoublepage
 
-%\include{./8-Appendice/Appendice} % non obbligatorio
+%\include{./7-Appendice/Appendice} % non obbligatorio
 %\clearemptydoublepage
 
 % Lista delle figure (non obbligatoria)
