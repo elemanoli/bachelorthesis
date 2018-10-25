@@ -1,9 +1,11 @@
 \chapter{Il metodo di upscaling}
 In questa sezione vediamo come è possibile ricostruire la biodiversità di un intero ecosistema a partire da un campione ridotto di SAD. \\
-(spiegare che il modello nasce in ambito ecologico)\\
-(come viene fatto il campionamento)\\
-(parlare in generale, numero di singleton, specie rare)\\
-(metodo di Chao??)\\
+
+....
+%(spiegare che il modello nasce in ambito ecologico)\\
+%(come viene fatto il campionamento)\\
+%(parlare in generale, numero di singleton, specie rare)\\
+%(metodo di Chao??)\\
 \\
 \section{Metodo della binomiale negativa}
 Il quadro analitico all'interno del quale si svolge questo lavoro è bastato sui seguenti passaggi:
@@ -62,6 +64,7 @@ Ricordiamo che questo metodo fa uso solamente delle informazioni che si possono 
     \frac{S^*(\emph{k})}{S^*}\equiv P(\emph{k}|\emph{p}^*)=\frac{\emph{P}_\emph{sub}(\emph{k}|\emph{p}^*)}{\sum_{k^{'} \ge 1}^{} \emph{P}_\emph{sub}(\emph{k}^{'}|\emph{p}^{*})}
     =\frac{\emph{P}(\emph{k}|\emph{r},\hat\xi_{\emph{p}^*})}{\sum_{k^{'} \ge 1}^{} \emph{P}(\emph{k}^{'}|\emph{r},\hat \xi_{\emph{p}^*})}
     =\emph{c}(\emph{r},\hat\xi_{\emph{p}^*})\emph{P}(\emph{k}|\emph{r},\hat \xi_{\emph{p}^*})
+    \label{eq:SstarRSA}
 \end{equation}
 che, dalla (\ref{eq:NBfunctform}), è una binomiale negativa normalizzata per $\emph{k}\ge 1$, mentre $\emph{P}(\emph{k}|\emph{r},\hat \xi_{\emph{p}^*}$ è normalizzata per $\emph{k}\ge 0$.
 Per quanto detto sopra otteniamo dunque il seguente risultato: partendo da una distribuzione binomiale negativa per la RSA a scala globale, anche la RSA a scala ridotta risulta distribuita secondo una binomiale negativa di parametri lo stesso \emph{r} e $\hat \xi_\emph{p}^*$ riscalato.
@@ -76,6 +79,7 @@ Fittando la RSA dei dati alla scala $\emph{p}^*$ possiamo dunque trovare i param
 Usando ancora la (\ref{eq:NBparametersub}) per eliminare $\xi$ dall'ultima equazione, otteniamo la seguente relazione per il parametro $\xi$ alle due scale \emph{p} e $\emph{p}^*$:
 \begin{equation}
     \hat\xi_\emph{p}=\frac{p \hat \xi_{\emph{p}^*}}{\emph{p}^*+\hat\xi_{\emph{p}^*}(\emph{p}-\emph{p}^*)}\equiv U(\emph{p},\emph{p}^*|\hat \xi_{\emph{p}^*})
+    \label{eq:xihatp}
 \end{equation}
 dalla quale, ovviamente, è possibile riottenere sia la (\ref{eq:NBparametersub}) che la (\ref{eq:NBparameter}) ponendo $\xi \equiv \hat \xi_{\emph{p}=1} $.
 
@@ -93,6 +97,114 @@ Usando la seconda delle (\ref{eq:RSAbinom}), il numero di specie presenti nell'i
 S=\frac{S^*}{1-\emph{P}_\emph{sub}(\emph{k}=0|\emph{p}^*)}=S^*\frac{1-(1-\xi)^r}{1-(1-\hat \xi_{\emph{p}}^*)^r}
 \label{eq:upscaleNB}
 \end{equation}
+
+Notiamo che, se si assume che la RSA segua una distribuzione binomiale negativa a scala globale, il valor medio dell'abbondanza totale riscala linearmente con l'area, infatti:
+(AGGIUNGERE EQ S26)
+
+\section{Metodo della distribuzione di Fisher}
+Ora mostreremo che è possibile risalire al numero di specie anche quando si suppone che la SAD a scala globale sia distribuita secondo una log-series.\\
+Supponiamo che la RSA a scala globale sia distribuita secondo una distribuzione logaritmica con parametro \emph{x}:
+
+\begin{equation}
+P(\emph{n}|1)=P^{\emph{LS}}(\emph{n}|\emph{x})=\alpha(x)\frac{\emph{x}^\emph{n}}{\emph{n}}, \alpha(x)=-(\log(1-\emph{x}))^{-1}
+\end{equation}
+dove $\alpha(x)$ è la costante di normalizzazione.
+Assumendo anche questa volta che la RSA del campione non sia affetta da correlazioni spaziali si trova che anche la log-series soddisfa la proprietà di auto somiglianza.
+
+\subsection{Proprietà di auto-somiglianza della distribuzione logaritmica di Fisher}
+Sia $P(\emph{n}|1)=\alpha(\emph{x})\emph{P}^{\emph{LS}}(\emph{n}|\emph{x})$ la RSA alla scala globale e denotiamo con $\emph{P}(\emph{k})|\emph{n,p}$ la probabilità che una specie abbia abbondanza \emph{k} nel campione alla scala \emph{p} $\in$ (0,1) condizionata dal fatto  alla scala totale \emph{A} la specie possiede \emph{n} individui.\\
+Se \emph{P}(\emph{k}|\emph{n,p})=$\emph{P}_\emph{binom}(\emph{k}|\emph{n,p})$ è distribuita secondo una binomiale, allora la RSA alla scala del campione, $\emph{P}^\emph{LS}_\emph{sub}(\emph{k}|\emph{p})$, è ancora una log-series per $\emph{k}\ge 1$ con il parametro \emph{x} riscalato:
+
+\begin{equation}
+\emph{P}^\emph{LS}_\emph{sub}(\emph{k}|\emph{p})=\begin{cases} n/2, & \mbox{se }n\mbox{ pari} \\ 3n+1, & \mbox{se }n\mbox{ dispari}
+\end{cases}
+\end{equation}
+con
+
+
+
+\begin{equation}
+\emph{$\hat x$}_\emph{p}=\frac{\emph{px}}{1-\emph{x}(1-\emph{p})}
+\label{eq:LSparametersub}
+\end{equation}
+DIMOSTRAZIONE??
+
+Notiamo che (\ref{eq:LSparametersub}) è analoga a (\ref{eq:NBparametersub}). Dunque l'analogo di (\ref{eq:NBparameter}) è
+
+
+\begin{equation}
+\emph{x}=\frac{\emph{$\hat x$}_\emph{p}}{\emph{p}+\emph{$\hat x$}_\emph{p}(1-\emph{p})}
+\label{eq:LSparameter}
+\end{equation}
+
+e l'equazione (\ref{eq:xihatp}) vale anche in questo caso.
+
+
+La RSA può essere ottenuta come nell'equazione (\ref{eq:SstarRSA}) ed è data da:
+
+\begin{equation}
+P(\emph{k}|\emph{p})=\frac{\emph{P}^\emph{LS}_\emph{sub}}{\sum_{k^{'} \ge 1}^{} \emph{P}^\emph{LS}_\emph{sub}(\emph{k}^{'}|\emph{p})}=\alpha(\emph{$\hat x$}_\emph{p}) \frac{\emph{$\hat x$}^\emph{k}_\emph{p}}{\emph{k}}=P^\emph{LS}(\emph{n}| \emph{$\hat x$}_\emph{p})
+\end{equation}
+
+Poiché la distribuzione logaritmica di Fisher è un caso particolare della binomiale negativa, è anch'essa invariante per scala.
+
+
+\subsection{Il numero di specie a scala totale}
+Il numero di specie con popolazione $\emph{k} \ge 1$ presenti nel sotto-campione di area \emph{a}=\emph{pA} è dato da:
+
+\begin{equation}
+S_\emph{p}(k) \equiv S\emph{P}_\emph{sub}(\emph{k}|\emph{p})=S\alpha(\emph{x})\frac{\emph{$\hat x$}^\emph{k}_\emph{p}}{\emph{k}}=\hat \alpha \frac{\emph{$\hat x$}^\emph{k}_\emph{p}}{\emph{k}}
+\end{equation} 
+dove abbiamo unito le costanti S e $\alpha (\emph{x})$ in un unico termine $\hat \alpha$ che non dipende dalla scala \emph{p} del campione. Quando ci riferiremo alla scala $\emph{p}^*$ useremo, per brevità di notazione, $S^*(\emph{k})\equiv S_{\emph{p}^*}(\emph{k})$.\\
+Allora il numero totale di specie $S^*$ e l'abbondanza totale $N^*$ (?) alla scala $\emph{p}^*$ sono date rispettivamente da:
+
+\begin{equation}
+S^*=\sum_{\emph{k}=1}^\infty S^*(\emph{k})=-\hat \alpha \log (1-\emph{$\hat x$}_{\emph{p}^*})
+\label{eq:SstarLS}
+\end{equation}
+
+\begin{equation}
+N^*=\emph{k}\sum_{\emph{k}=1}^\infty S^*(\emph{k})=\hat \alpha \frac{\emph{$\hat x$}_{\emph{p}^*}}{1-\emph{$\hat x$}_{\emph{p}^*}}
+\label{eq:NstarLS}
+\end{equation}
+
+Poiché $S^*$ e $N^*$ sono note dal campione, possiamo trovare $\hat \alpha$ risolvendo la seguente equazione:
+
+\begin{equation}
+N^*- \hat \alpha(\exp( \frac{S^*}{\hat \alpha})-1)=0
+\label{eq:solve}
+\end{equation}
+
+che è si ottiene inserendo l'espressione di $  \emph{$\hat x$}_{\emph{p}^*} $ da (\ref{eq:SstarLS}) nella (\ref{eq:NstarLS}).
+
+Vogliamo ora dedurre le informazioni a scala globale \emph{p}=1 dai dati disponibili alla scala \emph{p}=$\emph{p}^*$. Dalle considerazioni precedenti sappiamo che $ \hat \alpha$ è un parametro indipendente dalla scala, dunque abbiamo le seguenti relazioni per S e N:
+
+\begin{equation}
+S=-\hat \alpha \log(1-\emph{x})
+\label{eq:SLS}
+\end{equation}
+
+\begin{equation}
+N=\hat \alpha \frac{\emph{x}}{1-\emph{x}}
+\label{eq:NLS}
+\end{equation}
+
+dalle quali otteniamo:
+
+\begin{equation}
+S=\hat \alpha \log(1+ \frac{N}{\hat \alpha}),  \hat \alpha=S\alpha(\emph{x}).
+\label{eq:SalphaLS}
+\end{equation}
+
+Dunque per dedurre la biodiversità a scala globale, S, è necessaria una stima dell'abbondanza totale N. Prendiamo N=$N^*/ \emph{p}^*$. Notiamo che questo è consistente con il nostro quadro teorico nel quale assumiamo che la RSA sia "form-invariant(?)": infatti si può dimostrare che, se si assume che la RSA segua una distribuzione di Fisher a scala globale, il valor medio dell'abbondanza totale riscala linearmente con l'area:
+
+\begin{equation}
+\mathbb{E}(N^*)=\sum_{\emph{k}=1}^\infty \emph{k}S^*(\emph{k})=\sum_{\emph{k}=1}^\infty \emph{k} \hat \alpha  \frac{\hat {\emph{x}}^\emph{k}_{\emph{p}^*}}{\emph{k}}=\alpha \frac{\hat {\emph{x}}_{\emph{p}^*}}{1-\hat {\emph{x}}_{\emph{p}^*}}= \hat 	\alpha \frac{\emph{px}}{1-x}= \emph{p}^* \mathbb{E}(N),
+\end{equation}
+
+dove abbiamo usato la  (\ref{eq:LSparametersub}).
+
+
 % ---------------------  ESEMPI UTILI PRONTI ALL'USO  ----------------------------
 %TERZO capitolo della tesi. Esempio di citazione doppia \cite{Munoz-Lipo,Vas}.
 %
