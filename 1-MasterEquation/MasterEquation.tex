@@ -1,8 +1,6 @@
 \chapter{Master Equation}
-In questo capitolo vediamo come si possono ricavare la distribuzione binomiale negativa e la Log Series modellizzando la dinamica dell'abbondanza delle specie attraverso un'equazione che descrive la nascita e la morte degli individui : la \emph{birth-death master equation}.
-
-\section{Distribuzione binomiale negativa}
-%La distribuzione binomiale negativa può essere derivata dai principi primi alla base dei processi biologici: sia $\emph{P}_{\emph{n,s}}(t)$ la probabilità che ad un certo tempo t, la specie \emph{s} abbia esattamente \emph{n} individui, con \emph{s}\in$\left \{ 1,...,S \right \}$. Assumiamo che la dinamica della popolazione di ogni specie sia governata da due termini: i rate di nascita e di morte, rispettivamente, $\emph{b}_\emph{{n,s}}$ e $\emph{d}_\emph{{n,s}}$, per una specie \emph{s} con \emph{n} individui.
+In questo capitolo vediamo come si possono ricavare la distribuzione binomiale negativa e la distribuzione logaritmica modellizzando la dinamica dell'abbondanza delle specie attraverso un'equazione che descrive la nascita e la morte degli individui : la \emph{birth-death master equation}.\\
+Entrambe le distribuzioni possono essere derivate da principi primi alla base dei processi biologici: sia $\emph{P}_{\emph{n,s}}(t)$ la probabilità che ad un certo tempo t, la specie \emph{s} abbia esattamente \emph{n} individui, con \emph{s}\in$\left \{ 1,...,S \right \}$. Assumiamo che la dinamica della popolazione di ogni specie sia governata da due termini: i rate di nascita e di morte, rispettivamente, $\emph{b}_\emph{{n,s}}$ e $\emph{d}_\emph{{n,s}}$, per una specie \emph{s} con \emph{n} individui.
 L'equazione che regola l'evoluzione di $\emph{P}_{\emph{n,s}}(t)$ per $\emph{n}\ge0$ è la seguente:
 \begin{equation}
 \frac{\partial\emph{P}_{\emph{n,s}}(t)}{\partial\emph{t}}=
@@ -15,6 +13,11 @@ Imponendo condizioni al contorno riflettenti, $\emph{b}_\emph{{-1,s}}=\emph{d}_\
 \label{eq:steadystate}
 \end{equation}
 dove il termine $P_{0,\emph{s}}$ è il fattore di normalizzazione che può essere trovato imponendo la condizione $\sum_{n=1}^\infty \emph{P}_{\emph{n,s}}=1.$ Notiamo che la somma inizia da \emph{n}=1 in quanto non si considerano specie con abbondanza nulla.\\
+
+
+
+\section{Distribuzione binomiale negativa}
+
 Assumiamo ora che $\emph{b}_\emph{{n,s}}$ dipenda da un termine indipendente dal numero di individui $\emph{b}_\emph{s}$, cioè il tasso di nascita pro capite, e dal termine $\emph{r}_\emph{s}$, che tiene conto di eventi di immigrazione o di interazioni intraspecifiche:
 \begin{equation}
 \emph{b}_\emph{n,s}=\emph{b}_\emph{s}(n+\emph{r}_\emph{s}).
@@ -41,8 +44,8 @@ Dunque la probabilità che una specie \emph{s} abbia \emph{s} individui all'equi
 \end{equation}
 Sotto l'ipotesi della teoria neutrale,secondo la quale le specie sono considerate demograficamente equivalenti(cioè ogni individuo ha la stessa probabilità di procreare,morire e migrare), possiamo rimuovere l'indice \emph{s} di specie dall'equazione sopra, ottenendo così una RSA per l'ecosistema in esame.
 
-\section{La distribuzione logaritmica di Fisher}
-Notiamo che,scegliendo in modo diverso i termini $\emph{b}_\emph{n,s}$ e $\emph{d}_\emph{n,s}$,si può ottenere,partendo dalla \emph{birth death master equation} (\ref{eq:master}), un'altra importante distribuzione: la Fisher Log Series.
+\section{Distribuzione logaritmica di Fisher}
+Notiamo che,scegliendo in modo diverso i termini $\emph{b}_\emph{n,s}$ e $\emph{d}_\emph{n,s}$,si può ottenere,partendo dalla \emph{birth death master equation} (\ref{eq:master}), un'altra importante distribuzione: la distribuzione logaritmica di Fisher.
 Assumiamo che la dinamica della popolazione di una comunità sia governata dal corso ecologico e dalla speciazione casuale invece che dalla migrazione da comunità esterne (?).
 Allora possiamo porre:
 \begin{equation}
@@ -50,7 +53,7 @@ Allora possiamo porre:
 \label{eq:birthlog}
 \end{equation}
 Aggiungendo la condizione al contorno riflettente $\emph{b}_\emph{0,s}=\nu$ si ha che il tasso di nascita tiene conto della riproduzione e della speciazione. In particolare, il parametro $\nu$ assicura che, se le specie si estinguono, la comunità rimane sempre popolata da un individuo.
-Dunque sostituendo la (\ref{eq:deathNB}) e la (\ref{eq:birthlog}) nella (\ref{eq:steadystate}) e definendo $\emph{x}_emph{s}=\emph{b}_\emph{s}/\emph{d}_\emph{s}$, si trova la seguente soluzione stazionaria:
+Dunque sostituendo la (\ref{eq:deathNB}) e la (\ref{eq:birthlog}) nella (\ref{eq:steadystate}) e definendo $\emph{x}_\emph{s}=\emph{b}_\emph{s}/\emph{d}_\emph{s}$, si trova la seguente soluzione stazionaria:
 \begin{equation}
     \emph{P}_\emph{n,s}=P_\emph{0,s}\frac{\nu}{\emph{b}_\emph{s}}\frac{\emph{x}_\emph{s}^{\emph{n}}}{\emph{n}}.
 \end{equation}
@@ -59,11 +62,11 @@ $$
 1=\sum_{n=1}^\infty \emph{P}_{\emph{n,s}}=P_\emph{0,s}\frac{\nu}{\emph{b}_\emph{s}}\sum_{n=0}^\infty\frac{\emph{x}_\emph{s}^{\emph{n}}}{\emph{n}}=P_\emph{0,s}\frac{\nu}{\emph{b}_\emph{s}}[-\log(1-\emph{x}_\emph{s})].
 $$
 Dunque abbiamo:
-%\begin{equation}
-%    \emph{P}_\emph{n,s}^{\emp{LS}}=-\frac{1}{\log(1-\emph{x}_\emph{s})}\frac{\emph{x}_\emph{s}^{\emph{n}}}{\emph{n}}.
-%\label{eq:fisherdist}
-%\end{equation}
-Anche in questo caso assumiamo che le specie siano equivalenti e possiamo dunuq omettere l'indice \emph{s}.
+\begin{equation}
+    \emph{P}_\emph{n,s}^{\emph{LS}}=-\frac{1}{\log(1-\emph{x}_\emph{s})}\frac{\emph{x}_\emph{s}^{\emph{n}}}{\emph{n}}.
+\label{eq:fisherdist}
+\end{equation}
+Anche in questo caso assumiamo che le specie siano equivalenti e possiamo dunque omettere l'indice \emph{s}.
 
 \subsection{La distribuzione di Fisher come caso particolare della binomiale negativa}
 Osserviamo che la distribuzione binomiale negativa converge ad una distribuzione logarimtica nel limite di \emph{r} che tende a zero:

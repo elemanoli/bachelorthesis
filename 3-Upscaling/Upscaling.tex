@@ -1,20 +1,21 @@
-\chapter{Il metodo di upscaling}
-In questa sezione vediamo come è possibile ricostruire la biodiversità di un intero ecosistema a partire da un campione ridotto di SAD. \\
+\chapter{Metodi di upscaling}
+In questa sezione vediamo in dettaglio come è possibile ricostruire la biodiversità di un intero ecosistema a partire da un campione ridotto di SAD. \\
+Analizzeremo prima due metodi parametrici, quello della binomiale negativa e della distribuzione logaritmica di Fisher, e poi un metodo non parametrico, quello dell'estimatore di $Chao_\emph{wor}$.
 
-....
+
 %(spiegare che il modello nasce in ambito ecologico)\\
 %(come viene fatto il campionamento)\\
 %(parlare in generale, numero di singleton, specie rare)\\
 %(metodo di Chao??)\\
 \\
 \section{Metodo della binomiale negativa}
-Il quadro analitico all'interno del quale si svolge questo lavoro è bastato sui seguenti passaggi:
-\begin{itemize}
-    \item Campionare una frazione $\emph{p}^*$ dell'intera foresta e ottenere il vettore delle abbondanze delle $S^*$ specie campionate, $\emph{n}_{\emph{p}^*}={\emph{n}_1,\emph{n}_2,...,\emph{n}_{S^*}}$
-    \item Usare una combinazione lineare di binomiali negative con lo stesso $\hat \xi_{\emph{p}^*}$ e diversi valori di \emph{r} per fittare la SAD sperimentale al desiderato grado di accuratezza.
-\end{itemize}
-Di seguito analizzeremo in dettaglio il metodo,le proprietà e i passaggi che ci permettono di ottenere le informazioni desiderate.\\
-Quando facciamo upscaling siamo interessati alla SAD ed al numero totale di specie presenti a scala totale,cioè in tutta l'area della foresta\emph{A}.
+%Il quadro analitico all'interno del quale si svolge questo lavoro è bastato sui seguenti passaggi:
+%\begin{itemize}
+  %  \item Campionare una frazione $\emph{p}^*$ dell'intera foresta e ottenere il vettore delle abbondanze delle $S^*$ specie campionate, $\emph{n}_{\emph{p}^*}={\emph{n}_1,\emph{n}_2,...,\emph{n}_{S^*}}$
+  % \item Usare una combinazione lineare di binomiali negative con lo stesso $\hat \xi_{\emph{p}^*}$ e diversi valori di \emph{r} per fittare la SAD sperimentale al desiderato grado di accuratezza.
+%\end{itemize}
+Di seguito analizzeremo in dettaglio le proprietà e i passaggi che ci permettono di ottenere le informazioni desiderate.\\
+Quando facciamo upscaling siamo interessati alla SAD ed al numero totale di specie presenti a scala totale,cioè in tutta l'area della foresta \emph{A}.
 Denotiamo con P(\emph{n}|1) la probabilità che una specie abbia esattamente \emph{n} individui a scala totale(qui con il numero 1 si denota l'intera foresta), anche nota come \emph{abbondanza relativa delle specie} RSA.
 Notiamo che P(\emph{n}|1) deve essere definita solamente per $\emph{n}\ge1$ poiché, a scala totale, una data specie deve avere almeno un individuo.
 In questo contesto si ipotizza che la SAD segua una distribuzione binomiale negativa, \emph{P}(\emph{n}|\emph{r},$\xi$) di parametri (\emph{r},$\xi$):
@@ -32,10 +33,10 @@ dove \emph{c} è la costante di normalizzazione.
 Quest'ultima è stata calcolata imponendo $\sum_{\emph{n}=1}^\infty P(\emph{n}|1)$, dove la somma parte da 1 poiché le specie con abbondanza nulla a scala totale saranno assenti anche a scale ridotte.
 Notiamo che \emph{p}(\emph{n}|\emph{r},$\xi$) è normalizzata per $\emph{n}\ge0$: questo perché, nei sotto campioni, esiste una probabilità non nulla di trovare una specie, presente nell'intera foresta, avente \emph{n}=0 individui.In questo modo si tiene conto del numero di specie mancanti nei sotto campioni.\\
 Consideriamo ora un campione di foresta di area \emph{a} e definiamo \emph{p}=\emph{a}/\emph{A} la scala del campione, cioè la frazione di foresta osservata.
-Come primo passaggio calcoliamo la RSA del campione assumendo che quest'ultima non sia influenzata da correlazioni spaziali. Quest'ipotesi è ben soddisfatta ed è stata verificata usando dati di foreste generati \emph{in silico} a vari gradi di correlazione spaziale.(citare qualcosa, ci devo tornare sopra??)\\
+Come primo passaggio calcoliamo la RSA del campione assumendo che quest'ultima non sia influenzata da correlazioni spaziali. Quest'ipotesi è ben soddisfatta ed è stata verificata usando dati di foreste generati \emph{in silico} a vari gradi di correlazione spaziale.(cit, ci devo tornare sopra??)\\
 Sotto queste ipotesi la probabilità che una specie presenti \emph{k} individui in un'area \emph{a=pA}, condizionata dal fatto che presenta \emph{n} individui nella regione totale \emph{A} è data dalla distribuzione binomiale:
 \begin{equation}
-\emph{P}_\emph{binom}(\emph{k|p,n})=\begin{cases} \binom{\emph{n}}{\emph{k}}\emph{p}^\emph{k}(1-\emph{p})^{\emph{n-k}}, & \mbox{se }\emph{k}=0,...,\emph{n} \\ 0, & \mbox{se }n\mbox{\emph{k>n}}
+\emph{P}_\emph{binom}(\emph{k|p,n})=\begin{cases} \binom{\emph{n}}{\emph{k}}\emph{p}^\emph{k}(1-\emph{p})^{\emph{n-k}} & \mbox{se }\emph{k}=0,...,\emph{n} \\ 0 & \mbox{se }n\mbox{\emph{k>n}}
 \end{cases}
 \end{equation}
 
@@ -116,7 +117,7 @@ Sia $P(\emph{n}|1)=\alpha(\emph{x})\emph{P}^{\emph{LS}}(\emph{n}|\emph{x})$ la R
 Se \emph{P}(\emph{k}|\emph{n,p})=$\emph{P}_\emph{binom}(\emph{k}|\emph{n,p})$ è distribuita secondo una binomiale, allora la RSA alla scala del campione, $\emph{P}^\emph{LS}_\emph{sub}(\emph{k}|\emph{p})$, è ancora una log-series per $\emph{k}\ge 1$ con il parametro \emph{x} riscalato:
 
 \begin{equation}
-\emph{P}^\emph{LS}_\emph{sub}(\emph{k}|\emph{p})=\begin{cases} n/2, & \mbox{se }n\mbox{ pari} \\ 3n+1, & \mbox{se }n\mbox{ dispari}
+\emph{P}^\emph{LS}_\emph{sub}(\emph{k}|\emph{p})=\begin{cases} \alpha(\emph{x}) \emph{P}^\emph{LS}(\emph{k}|\emph{$ \hat x$}_\emph{p}) & \mbox{ }\mbox{ \emph{k} } \ge 1 \\ 1-\alpha(\emph{x})/\alpha(\emph{$\hat x$}_\emph{p}) & \mbox{ } \mbox{ \emph{k}=0}
 \end{cases}
 \end{equation}
 con
