@@ -219,7 +219,7 @@ Vediamo ora il metodo non parametrico sviluppato da Chao, nato nell'ambito di un
 Assumiamo che in un ecosistema ci siano S specie indicizzate da 1 a S.
 Sia $N_\emph{i}$ (abbondanza assoluta) il numero di individui appartenenti alla \emph{i}-esima specie, \emph{i}=1,...,S, e $N_\emph{i}>0$. La popolazione totale dunque è data da $N=\sum_{\emph{i}=1}^{S} N_\emph{i}$. Assumiamo che la dimensione del campione N sia nota, cioè è nota la frazione di campionamento.\\
 Supponiamo di prendere dall'intero ecosistema un sotto campione di \emph{n} individui, campionandoli senza reinserimento. Sia $X_\emph{i}$ la frequenza della specie campionata cioè il numero di individui della \emph{i}-esima specie osservati nel campione. Solo le specie con  $X_\emph{i}>0$ sono osservabili nel campione. Sia $\emph{f}_\emph{k}$ il numero di specie nel campione che sono rappresentate esattamente da \emph{k} individui, dunque $\emph{f}_0$ denota il numero di specie che non sono state osservate nel campione. Dunque abbiamo che $\emph{n}=\sum_{\emph{i}=1}^S X_\emph{i}=\sum_{\emph{k}>1} \emph{k}\emph{f}_\emph{k}$.
-Definiamo $\emph{p}^*=\emph{n}/N$ la frazione di campionamento e $^*$ il numero di specie osservate nel sotto campione, $S^*=\sum_{\emph{k>1}} \emph{f}_\emph{k}$.\\
+Definiamo $\emph{p}^*=\emph{n}/N$ la frazione di campionamento e $S^*$ il numero di specie osservate nel sotto campione, $S^*=\sum_{\emph{k>1}} \emph{f}_\emph{k}$.\\
 Generalmente, la probabilità che una specie venga rilevata, o rate di rilevamento, dipende sia dall'abbondanza della specie nel campione sia da caratteristiche specifiche degli individui come ad esempio il modo di spostarsi e muoversi all'interno dell'ambiente , colore, forma e dimensione.\\ Consideriamo dunque il caso generale in cui la probabilità di trovare un individuo possa variare a seconda della specie di appartenenza e indichiamola con $\theta_\emph{i}>0$ per la \emph{i}-esima specie.
 Sotto queste ipotesi, definendo $\emph{q}_\emph{i}=N_\emph{i}/N $ come l'abbondanza relativa, il rate di rilevamento per la \emph{i}-esima specie diventa $\psi_{\emph{i}}=\frac{N_\emph{i}\theta_\emph{i}}{\sum_{\emph{k}=1}^S N_\emph{k}\theta_\emph{k}}=\frac{\emph{q}_\emph{i}\theta_\emph{i}}{\sum_{\emph{k}=1}^S \emph{q}_\emph{k}\theta_\emph{k}}$ con \emph{i}=1,...,S.
 Intuitivamente, il numero di individui che hanno la stessa possibilità di essere osservati è dato da $N_\emph{i}\psi_\emph{i}$, ma poiché questo potrebbe essere un numero non intero, definiamo una variabile a valori interi $Z_\emph{i}$, che rappresenta il numero di individui che hanno la stessa possibilità di essere osservati per la \emph{i}-esima specie. Siccome $Z\ge 1$ e la frazione di individui campionata è \emph{n}/N, si può modellare il vettore \textbf{Z}=($Z_1,Z_2,...,Z_S$) attraverso una distribuzione multinomiale troncata con N celle totali e con celle di probabilità le ($\psi_1^*,\psi_2^*,...,\psi_S^*$), dove $\psi_\emph{i}^*=\psi_1$/P{\emph{z},$\emph{z}_\emph{i} \ge 1 $, \emph{i}=1,...,S}, \textbf{z}=($\emph{z}_1 , \emph{z}_2,...,\emph{z}_S$) e $\sum_{\emph{i}=1}^S \emph{z}_\emph{i}=N$. Per ogni dato valore di \textbf{z}=($\emph{z}_1 , \emph{z}_2,...,\emph{z}_S$), le frequenze con cui appaiono gli individui della specie \emph{i}-esima nel campione, ($X_1,X_2,...,X_S$), seguono una distribuzione ipergeometrica generalizzata:
@@ -235,6 +235,8 @@ P(X_\emph{i}=\emph{x}_\emph{i})=\binom{\emph{z}_\emph{i}}{\emph{k}}\binom{N-\emp
 \label{eq:multinomial}
 \end{equation}
 
+\subsection{Il numero di specie a scala totale}
+Vediamo dunque com'è possibile dedurre, sotto queste ipotesi, il numero di specie a scala totale a partire da un vettore di abbondanze ottenuto esaminando una frazione dell'intero ecosistema.\\ \\
 Il valore di aspettazione per i contatori di frequenze $\emph{f}_\emph{k}$ usando la (\ref{eq:multinomial}) è:
 \begin{equation}
     \mathbb{E}(\emph{f}_\emph{k})=\sum_\emph{i}^S P(X-\emph{i}=\emph{x}_\emph{x})= \sum_{\emph{i}=1}^S \binom{\emph{z}_\emph{i}}{\emph{k}}\binom{N-\emph{z}_\emph{i}}{\emph{n}-\emph{k}}/\binom{N}{\emph{n}}
@@ -250,13 +252,49 @@ $$ \mathbb{E}(\emph{f}_1)=\sum_{\emph{i}=1}^S \binom{\emph{z}_\emph{i}}{1} \bino
 
 $$ \mathbb{E}(\emph{f}_2)=\sum_{\emph{i}=1}^S \binom{\emph{z}_\emph{i}}{2} \binom{N-\emph{z}_\emph{i}}{\emph{n-2}}/\binom{N}{\emph{n}}=\sum_{\emph{i}=1}^S\frac{\emph{n}(\emph{n}-1)\emph{z}_\emph{i}(\emph{z}_\emph{i}-1)}{2(N-\emph{z}_\emph{i}-\emph{n}+1)(N-\emph{z}_\emph{i}-\emph{n}+2)} \binom{N-\emph{z}_\emph{i}}{\emph{n}}/\binom{N}{\emph{n}}$$
 
-La disuguaglianza di Cauchy-Schwarz porta a:
+Per la disuguaglianza di Cauchy-Schwarz si ha:
 
 $$
 \left \{ \sum_{\emph{i}=1}^S\frac{\emph{n}\emph{z}_\emph{i}}{N-\emph{z}_\emph{i}-\emph{n}+1} \binom{N-\emph{z}_\emph{i}}{\emph{n}}/\binom{N}{\emph{n}} \right \}^2 \le $$ 
 $$ \left \{ \sum_{\emph{i}=1}^S \binom{N-\emph{z}_\emph{i}}{\emph{n}}/\binom{N}{\emph{n}} \right \}\times \left \{ \sum_{\emph{i}=1}^S \left(\frac{\emph{n}\emph{z}_\emph{i}}{N-\emph{z}_\emph{i}-\emph{n}+1}\right)^2 \binom{N-\emph{z}_\emph{i}}{\emph{n}}/\binom{N}{\emph{n}} \right \},
 $$
  dove vale il segno di uguaglianza quando tutte le $\emph{z}_\emph{i}$ sono uguali.
+ 
+ La parte sinistra della disuguaglianza è $ \left \{ \mathbb{E}(\emph{f}_1) \right \}^2$ e la prima somma della parte destra è $ \left \{ \mathbb{E}(\emph{f}_0) \right \}$. Per quanto riguarda la seconda somma di destra possiamo riscrivere:
+ 
+ $$\left(\frac{\emph{n}\emph{z}_\emph{i}}{N-\emph{z}_\emph{i}-\emph{n}+1}\right)^2=\frac{\emph{n}}{\emph{n}-1}\left(\frac{\emph{n}(\emph{n}-1)\emph{z}_\emph{i}(\emph{z}_\emph{i}-1)}{(N-\emph{z}_\emph{i}-\emph{n}+1)^2}\right) + \frac{\emph{n}^2\emph{z}_\emph{i}}{(N-\emph{z}_\emph{i}-\emph{n}+1)^2}. $$
+ 
+Dunque la seconda somma diventa:
+
+ 
+ $$\left \{ \sum_{\emph{i}=1}^S \left(\frac{\emph{n}\emph{z}_\emph{i}}{N-\emph{z}_\emph{i}-\emph{n}+1}\right)^2 \binom{N-\emph{z}_\emph{i}}{\emph{n}}/\binom{N}{\emph{n}} \right \} \approx \frac{2\emph{n}}{\emph{n}-1}\mathbb{E}(\emph{f}_2)$$ 
+ $$ + \sum_{\emph{i}=1}^S \left [ \frac{\emph{n}}{N-\emph{z}_\emph{i}-\emph{n}+1} \right ]\frac{\emph{n}\emph{z}_\emph{i}}{N-\emph{z}_\emph{i}-\emph{n}+1}\binom{N-\emph{z}_\emph{i}}{\emph{n}}/\binom{N}{\emph{n}}$$
+ \\
+ Il contributo delle specie con $\emph{z}_\emph{i}$ grande  all'ultimo termine dell'equazione sopra è trascurabile, per le specie con $\emph{z}_ \emph{i}$ molto più piccolo di N, abbiamo:
+ 
+ $$
+ \frac{\emph{n}}{N-\emph{z}_\emph{i}-\emph{n}+1}=\frac{\emph{n/N}}{(N-\emph{z}_\emph{i}-\emph{n}+1)/N} \approx \frac{\emph{n}/N}{1-\emph{n}/N}=\frac{\emph{p}^*}{1-\emph{p}^*}.
+ $$
+ 
+ Quindi otteniamo la seguente disuguaglianza:
+ 
+$$
+\left \{ \mathbb{E}(\emph{f}_1) \right \}^2 \le \left \{ \mathbb{E}(\emph{f}_0) \right \}\left \{ \frac{\emph{n}}{\emph{n}-1}2\mathbb{E}(\emph{f}_2) + \frac{\emph{p}^*}{1-\emph{p}^*}\mathbb{E}(\emph{f}_1) \right \},
+$$
+
+che è equivalente a:
+
+
+\begin{equation}
+\mathbb{E}(\emph{f}_0) \ge \frac{\mathbb{E}(\emph{f}_1^2)}{\frac{\emph{n}}{\emph{n}-1}2\mathbb{E}(\emph{f}_2)+ \frac{\emph{p}^*}{1-\emph{p}^*}\mathbb{E}(\emph{f}_1)}.
+\end{equation}
+
+Sostituendo il valore di aspettazione con le frequenze osservate otteniamo come limite inferiore per la ricchezza delle specie:
+
+\begin{equation}
+    S_{\emph{p}=1}= S^* +\frac{\emph{f}_1^2}{\frac{\emph{n}}{\emph{n}-1}2\emph{f}_2+ \frac{\emph{p}^*}{1-\emph{p}^*}\emph{f}_1}.
+    \label{eq:chaoworestimator}
+\end{equation}
 
 
 
