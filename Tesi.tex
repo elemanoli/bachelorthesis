@@ -32,6 +32,8 @@
 \usepackage[noend]{algpseudocode}
 \usepackage{lipsum}
 \usepackage{pdfpages}
+\usepackage{cite}
+
 %%%%%%%
   % Queste informazioni non vengono stampate, ma sono conservate nel documento pdf. Sono consultabili col menu "File>Document Properites>Description". Vengono buone a scopi archivistici.
 
@@ -91,10 +93,10 @@
 
 \clearemptydoublepage
 
-\include{./1-MasterEquation/MasterEquation}
+\include{./1-Modelli/Modelli}
 \clearemptydoublepage
 
-\include{./2-Modelli/Modelli}
+\include{./2-MasterEquation/MasterEquation}
 
 \clearemptydoublepage
 
@@ -102,14 +104,14 @@
 
 \clearemptydoublepage
 
-%\include{./3-/}
+\include{./4-Applicazioni/Applicazioni}
 
 \clearemptydoublepage
 
 
 \clearemptydoublepage
 
-\include{./4-Conclusioni/Conclusioni}
+\include{./5-Conclusioni/Conclusioni}
 
 %\backmatter
 
@@ -118,7 +120,7 @@
 %\include{./5-Ringraziamenti/Ringraziamenti} % non obbligatorio
 %\clearemptydoublepage
 
-\include{./6-Bibliografia/Bibliografia}
+\include{./7-Bibliografia/Bibliografia}
 
 \appendix
 
@@ -146,4 +148,6 @@
 \renewcommand{\textfraction}{0.1}
 \renewcommand{\floatpagefraction}{0.75}
 
+\bibliography{7-Bibliografia/Biblio}{}
+\bibliographystyle{plain}
 \end{document}
