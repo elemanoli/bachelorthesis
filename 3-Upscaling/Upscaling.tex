@@ -1,24 +1,27 @@
 \chapter{Metodi di upscaling}
-In questa sezione vediamo in dettaglio come è possibile ricostruire la biodiversità di un intero ecosistema a partire da un campione ridotto di SAD. \\
+Con il termine \emph{upscaling} si intende "a scala più grande": in questo contesto significa predire il numero di specie presenti a scale più grandi di quelle che, per motivi pratici, possono essere indagate sperimentalmente e di cui si hanno dunque dati certi.\\
+In questa sezione vediamo in dettaglio come è possibile ricostruire la biodiversità di un intero ecosistema a partire da un campione ridotto di SAD, occupandoci del caso in cui ad essere studiata è una frazione dell'area totale del sistema in esame.\\
 Analizzeremo prima due metodi parametrici, quello della binomiale negativa e della distribuzione logaritmica di Fisher, e poi un metodo non parametrico, quello dell'estimatore di $Chao_\emph{wor}$.
 
-
+\subsubsection{Ipotesi sul metodo di upscaling}
+Nella nostra analisi assumiamo che la probabilità \emph{p} che un individuo si trovi all'interno di una zona \emph{a} contenuta in una regione \emph{A} sia proporzionale all'area della zona stessa: \emph{p}=\emph{a}/\emph{A}. Ci riferiamo a quest'ipotesi con il nome di "ipotesi di campo medio". Una conseguenza di ciò è che campionare una frazione \emph{p} di un'area \emph{A} in cui ogni individuo viene catalogato in una lista in base alla specie di appartenenza è equivalente a campionare la stessa frazione \emph{p} degli individui sulla lista. Questa è l'unica procedura imparziale che può essere adottata quando non si hanno informazioni né sulle posizioni degli individui né sulle correlazioni spaziali. Per ritenere quest'ipotesi soddisfatta bisogna verificare che la regione in esame non presenti forti disomogeneità e anisotropie, altrimenti alcune specie tenderebbero ad abitare habitat specifici all'interno della regione e dunque l'assunzione di avere una distribuzione spaziale degli individui omogenea non sarebbe più valida.\\
 %(spiegare che il modello nasce in ambito ecologico)\\
 %(come viene fatto il campionamento)\\
 %(parlare in generale, numero di singleton, specie rare)\\
 %(metodo di Chao??)\\
 \\
+
 \section{Metodo della binomiale negativa}
 %Il quadro analitico all'interno del quale si svolge questo lavoro è bastato sui seguenti passaggi:
 %\begin{itemize}
   %  \item Campionare una frazione $\emph{p}^*$ dell'intera foresta e ottenere il vettore delle abbondanze delle $S^*$ specie campionate, $\emph{n}_{\emph{p}^*}={\emph{n}_1,\emph{n}_2,...,\emph{n}_{S^*}}$
   % \item Usare una combinazione lineare di binomiali negative con lo stesso $\hat \xi_{\emph{p}^*}$ e diversi valori di \emph{r} per fittare la SAD sperimentale al desiderato grado di accuratezza.
 %\end{itemize}
-Di seguito analizzeremo in dettaglio le proprietà e i passaggi che ci permettono di ottenere le informazioni desiderate.\\
-Quando facciamo upscaling siamo interessati alla SAD ed al numero totale di specie presenti a scala totale,cioè in tutta l'area della foresta \emph{A}.
-Denotiamo con P(\emph{n}|1) la probabilità che una specie abbia esattamente \emph{n} individui a scala totale(qui con il numero 1 si denota l'intera foresta), anche nota come \emph{abbondanza relativa delle specie} RSA.
-Notiamo che P(\emph{n}|1) deve essere definita solamente per $\emph{n}\ge1$ poiché, a scala totale, una data specie deve avere almeno un individuo.
-In questo contesto si ipotizza che la SAD segua una distribuzione binomiale negativa, \emph{P}(\emph{n}|\emph{r},$\xi$) di parametri (\emph{r},$\xi$):
+%Di seguito analizzeremo in dettaglio le proprietà e i passaggi che ci permettono di ottenere le informazioni desiderate.\\
+Quando facciamo\emph{ upscaling} siamo interessati alla SAD ed al numero totale di specie presenti a scala totale,cioè in tutta l'area \emph{A} dell'ecosistema in esame.
+Denotiamo con P(\emph{n}|1) la probabilità che una specie abbia esattamente \emph{n} individui a scala totale (con il numero 1 si intende l'intero ecosistema), anche nota come \emph{abbondanza relativa delle specie} RSA.
+Notiamo che P(\emph{n}|1) deve essere definita solamente per $\emph{n}\ge1$ poiché per poter osservate una data specie questa deve essere popolata da almeno un individuo.\newline
+In questo metodo di \emph{upscaling} si ipotizza che la SAD segua una distribuzione binomiale negativa \emph{P}(\emph{n}|\emph{r},$\xi$) di parametri (\emph{r},$\xi$):
 \\ 
 \begin{equation}
  P(\emph{n}|1)=\emph{c}(\emph{r},\xi)\emph{P}(\emph{n}|\emph{r},\xi)
@@ -26,32 +29,36 @@ In questo contesto si ipotizza che la SAD segua una distribuzione binomiale nega
 \end{equation}
 con 
 \begin{equation}
-    \emph{P}_\emph{n}=\binom{n+\emph{r}-1}{n}\xi^n(1-\xi)^{\emph{r}},      
-    \emph{c}(\emph{r}\xi)=\frac{1}{1-(1-\xi)^{\emph{r}}}
+    \emph{P}(\emph{n}|\emph{r},\xi)=\binom{n+\emph{r}-1}{n}\xi^n(1-\xi)^{\emph{r}}     
+\end{equation}
+e
+\begin{equation}
+     \emph{c}(\emph{r},\xi)=\frac{1}{1-(1-\xi)^{\emph{r}}}
 \end{equation}
 \\ 
 dove \emph{c} è la costante di normalizzazione.
-Quest'ultima è stata calcolata imponendo $\sum_{\emph{n}=1}^\infty P(\emph{n}|1)$, dove la somma parte da 1 poiché le specie con abbondanza nulla a scala totale saranno assenti anche a scale ridotte.
-Notiamo che \emph{p}(\emph{n}|\emph{r},$\xi$) è normalizzata per $\emph{n}\ge0$: questo perché, nei sotto campioni, esiste una probabilità non nulla di trovare una specie, presente nell'intera foresta, avente \emph{n}=0 individui.In questo modo si tiene conto del numero di specie mancanti nei sotto campioni.\\
-Consideriamo ora un campione di foresta di area \emph{a} e definiamo \emph{p}=\emph{a}/\emph{A} la scala del campione, cioè la frazione di foresta osservata.
+Quest'ultima è stata calcolata imponendo $\sum_{\emph{n}=1}^\infty P(\emph{n}|1)$, dove la somma parte da 1 poiché  non si possono osservare specie con abbondanza nulla.
+Notiamo che \emph{P}(\emph{n}|\emph{r},$\xi$) è normalizzata per $\emph{n}\ge0$: questo perché, nei sotto campioni, esiste una probabilità non nulla di trovare una specie, presente nell'intero ecosistema, avente \emph{n}=0 individui, dunque in questo modo si tiene conto del numero di specie mancanti nei sotto campioni.\\
+Consideriamo ora un campione di area \emph{a} e definiamo \emph{p}=\emph{a}/\emph{A} la scala del campione, cioè la frazione di foresta osservata.
 Come primo passaggio calcoliamo la RSA del campione assumendo che quest'ultima non sia influenzata da correlazioni spaziali. Quest'ipotesi è ben soddisfatta ed è stata verificata usando dati di foreste generati \emph{in silico} a vari gradi di correlazione spaziale.(cit, ci devo tornare sopra??)\\
 Sotto queste ipotesi la probabilità che una specie presenti \emph{k} individui in un'area \emph{a=pA}, condizionata dal fatto che presenta \emph{n} individui nella regione totale \emph{A} è data dalla distribuzione binomiale:
 \\ 
 \begin{equation}
-\emph{P}_\emph{binom}(\emph{k|p,n})=\begin{cases} \binom{\emph{n}}{\emph{k}}\emph{p}^\emph{k}(1-\emph{p})^{\emph{n-k}} & \mbox{se }\emph{k}=0,...,\emph{n} \\ 0 & \mbox{se }n\mbox{\emph{k>n}}
+\emph{P}_\emph{binom}(\emph{k}|\emph{p},\emph{n})=\begin{cases} \binom{\emph{n}}{\emph{k}}\emph{p}^\emph{k}(1-\emph{p})^{\emph{n-k}} & \mbox{se }\emph{k}=0,...,\emph{n} \\ 0 & \mbox{se }\mbox{\emph{k>n}}
 \end{cases}
 \end{equation}
 \\ 
 
-Infatti,in assenza di correlazioni spaziali, la probabilità che uno degli individui di una specie si trovi in una regione di area \emph{a} è esattamente \emph{p}.(?controllare?)
+Infatti,in assenza di correlazioni spaziali, la probabilità che uno degli individui di una specie si trovi in una regione di area \emph{a} è esattamente \emph{p}.
 
 Mostriamo ora un risultato chiave per il metodo di upscaling:
-\subsection{Proprietà di auto-somiglianza della distribuzione binomiale negativa}
-Sia P(\emph{n}|1)=\emph{c}(\emph{r},$\xi$)\emph{P}(\emph{n}|\emph{r},$\xi$) la RSA della foresta a scala totale e denotiamo con \emph{P}(\emph{k}|\emph{r},$\xi$) la probabilità che una specie abbia abbondanza \emph{k} alla scala \emph{p}$\in$(0,1), condizionata dal fatto che alla scala totale \emph{A} sono presenti \emph{n} individui di quella specie.
-Se \emph{P}(\emph{k}|\emph{n,p})=$\emph{P}_\emph{binom}(\emph{n}|\emph{r},\xi)$ segue una distribuzione binomiale, allora la RSA $\emph{P}_\emph{sub}(\emph{k}|\emph{p})$ alla scala di campionamento \emph{p} è ancora una binomiale negativa per $\emph{k}\ge1$ con il parametro $\xi$ riscalato e lo stesso \emph{r}:
+\subsection{Proprietà di invarianza per forma 
+della distribuzione binomiale negativa}
+Sia P(\emph{n}|1)=\emph{c}(\emph{r},$\xi$)\emph{P}(\emph{n}|\emph{r},$\xi$) la RSA dell'ecosistema a scala totale e denotiamo con \emph{P}(\emph{k}|\emph{n},\emph{p}) la probabilità che una specie abbia abbondanza \emph{k} alla scala \emph{p}$\in$(0,1) condizionata dal fatto che alla scala totale \emph{A} sono presenti \emph{n} individui di quella specie.
+Se \emph{P}(\emph{k}|\emph{n,p})=$\emph{P}_\emph{binom}(\emph{k}|\emph{n},\emph{p})$ segue una distribuzione binomiale, allora la RSA $\emph{P}_\emph{sub}(\emph{k}|\emph{p})$ alla scala di campionamento \emph{p} è ancora una binomiale negativa per $\emph{k}\ge1$ con il parametro $\xi$ riscalato e lo stesso \emph{r}:
 \\ \\
 \begin{equation}
-    \emph{P}_\emph{sub}(\emph{k}|\emph{p})=\begin{cases} \emph{c}(\emph{r},\xi)\emph{P}(\emph{k}|\emph{r},\xi), & \mbox{ }\emph{k}\ge1 \\ 1-\emph{c}(\emph{r},\xi)/\emph{c}(\emph{r},\hat\xi_{\emph{p}}), & \mbox{ }\mbox{\emph{k=0}}
+    \emph{P}_\emph{sub}(\emph{k}|\emph{p})=\begin{cases} \emph{c}(\emph{r},\xi)\emph{P}(\emph{k}|\emph{r},\hat \xi_\emph{p}), & \mbox{ }\emph{k}\ge1 \\ 1-\emph{c}(\emph{r},\xi)/\emph{c}(\emph{r},\hat\xi_{\emph{p}}), & \mbox{ }\mbox{\emph{k=0}}
     \end{cases}
 \label{eq:RSAbinom}
 \end{equation}
@@ -61,9 +68,36 @@ con
     \hat\xi_{\emph{p}}=\frac{\emph{p}\xi}{1-\xi(1-\emph{p})}
 \label{eq:NBparametersub}
 \end{equation}
-\\ \\
-DIMOSTRAZIONE?\\
-\\
+Infatti la probabilità $P_\emph{sub}(\emph{k}|\emph{p})$ di trovare una specie popolata da $\emph{k} \ge 0$ individui nel campione di area \emph{a}=\emph{p}\emph{A} è:
+%\begin{proof}
+
+\begin{equation}
+   % \begin{aligned}
+  %  A & = B + C\\
+  %    & = D + E + F\\
+   %   & = G
+  %\end{aligned}
+  \begin{aligned}
+   \emph{k}\ge 1: P_\emph{sub}(\emph{k}|\emph{p}) & = \sum_{\emph{n}\ge \emph{k}}\emph{P}_\emph{binom}(\emph{k}|\emph{n},\emph{p})P(\emph{n}|1)\\
+      & = \sum_{\emph{n}\ge \emph{k}} \binom{\emph{n}}{\emph{k}}\emph{p}^\emph{k}(1-p)^{\emph{n}-\emph{k}} \cdot\emph{c}(\emph{r},\xi) \binom{\emph{n}+\emph{r}-1}{\emph{n}}\xi ^ \emph{n}(1-\xi)^\emph{r}\\
+      & =\emph{c}(\emph{r},\xi)\binom{\emph{k}+\emph{r}-1}{\emph{k}}\left( \frac{\emph{p}\xi}{1-\xi(1-\emph{p})} \right)^\emph{k}\left( \frac{1-\xi}{1-\xi(1-\emph{p})} \right)^\emph{r} \\
+      & = \emph{c}(\emph{r},\xi)\binom{\emph{k}+\emph{r}-1}{\emph{k}} \hat \xi_\emph{p}^\emph{k}(1-\hat \xi_\emph{p})^\emph{r} = \emph{c}(\emph{r},\xi)\cdot \emph{P}(\emph{k}|\emph{r},\hat \xi_\emph{p})
+  \end{aligned}
+\end{equation}
+
+dove abbiamo usato la (\ref{eq:NBparametersub}) per $\hat \xi_\emph{p}$ per la penultima uguaglianza, e
+
+ \begin{equation}
+     \begin{aligned}
+         \emph{k}=0: \emph{P}_\emph{sub}(0|\emph{p}) & =1-\sum_{\emph{n}\ge\emph{1}}\emph{P}_\emph{sub}(\emph{k}|\emph{p}) \\
+         &=1-\sum_{\emph{n}=1}^\infty \emph{c}(\emph{r},\xi)\cdot \binom{\emph{k}+\emph{r}-1}{\emph{k}}\hat \xi_\emph{p}^\emph{k}(1-\hat \xi_\emph{p})^\emph{r}\\
+         &=1-\emph{c}(\emph{r},\xi)\cdot \sum_{\emph{k}=1}^\infty \emph{P}(\emph{k}|\emph{r},\hat \xi _\emph{p})=1-\frac{\emph{c}(\emph{r},\xi)}{\emph{c}(\emph{r}, \hat \xi_\emph{p})}.
+     \end{aligned}
+ \end{equation}
+ 
+%\end{proof}
+ 
+\subsection{Il numero di specie a scala totale}
 Ricordiamo che questo metodo fa uso solamente delle informazioni che si possono ottenere da un campione ad una certa scala $p^*$, infatti noi abbiamo informazioni solo sulle abbondanze delle $S^*\le S$ specie presenti nel campione esaminato. Denotando il numero di specie di abbondanza \emph{k} alla scala $p^*$ con $S^*(\emph{k})$, otteniamo, per $\emph{k}\ge 1$:
 
 \begin{equation}
@@ -73,11 +107,10 @@ Ricordiamo che questo metodo fa uso solamente delle informazioni che si possono 
     \label{eq:SstarRSA}
 \end{equation}
 
-che, dalla (\ref{eq:NBfunctform}), è una binomiale negativa normalizzata per $\emph{k}\ge 1$, mentre $\emph{P}(\emph{k}|\emph{r},\hat \xi_{\emph{p}^*}$ è normalizzata per $\emph{k}\ge 0$.
+che, dalla (\ref{eq:NBfunctform}), è una binomiale negativa normalizzata per $\emph{k}\ge 1$, mentre $\emph{P}(\emph{k}|\emph{r},\hat \xi_{\emph{p}^*})$ è normalizzata per $\emph{k}\ge 0$.
 Per quanto detto sopra otteniamo dunque il seguente risultato: partendo da una distribuzione binomiale negativa per la RSA a scala globale, anche la RSA a scala ridotta risulta distribuita secondo una binomiale negativa di parametri lo stesso \emph{r} e $\hat \xi_\emph{p}^*$ riscalato.
 Una RSA avente la proprietà di avere la stessa forma funzionale a scale differenti è detta essere \emph{invariante per forma}.
 
-\subsection{Il numero di specie a scala totale}
 Fittando la RSA dei dati alla scala $\emph{p}^*$ possiamo dunque trovare i parametri \emph{r} e $\hat \xi_\emph{p}^*$ e, invertendo l'equazione (\ref{eq:NBparametersub}), troviamo:
 \begin{equation}
     \xi=\frac{\hat \xi_{\emph{p}^*}}{\emph{p}^*+\hat \xi_{\emph{p}^*}(1-\emph{p}^*)}
@@ -97,7 +130,7 @@ Notiamo che:
 \emph{P}_\emph{sub}(\emph{k=0}|\emph{p}^*)=\frac{S-S^*}{S}
 \end{equation}
 \begin{equation}
-    \emph{P}_\emph{sub}(\emph{k=0}|\emph{p}^*)=\frac{S^*(\emph{k})}{S}.
+    \emph{P}_\emph{sub}(\emph{k}|\emph{p}^*)=\frac{S^*(\emph{k})}{S}.
 \end{equation}
 Usando la seconda delle (\ref{eq:RSAbinom}), il numero di specie presenti nell'intera foresta è dato, in termini dei dati del campione osservato, da:
 \begin{equation}
@@ -106,22 +139,24 @@ S=\frac{S^*}{1-\emph{P}_\emph{sub}(\emph{k}=0|\emph{p}^*)}=S^*\frac{1-(1-\xi)^r}
 \end{equation}
 
 Notiamo che, se si assume che la RSA segua una distribuzione binomiale negativa a scala globale, il valor medio dell'abbondanza totale riscala linearmente con l'area, infatti:
-(AGGIUNGERE EQ S26)
+\begin{equation}
+    \mathbb{E}(N^*)=\sum_{\emph{k}=1}^\infty \emph{k}S \emph{c}(\emph{r},\xi)\binom{\emph{k}+\emph{r}-1}{\emph{k}}\hat \xi_{\emph{p}^*}^\emph{k}(1-\hat \xi_{\emph{p}^*})^\emph{r}=S\emph{c}(\emph{r},\xi)\emph{r}\frac{\hat \xi_{\emph{p}^*}}{1-\hat \xi_{\emph{p}^*}}=S\emph{c}(\emph{r},\xi)\emph{r}\frac{\emph{p}\xi}{1-\xi}=\emph{p}\mathbb{E}(N)
+\end{equation}
 
 \section{Metodo della distribuzione di Fisher}
-Ora mostreremo che è possibile risalire al numero di specie anche quando si suppone che la SAD a scala globale sia distribuita secondo una log-series.\\
-Supponiamo che la RSA a scala globale sia distribuita secondo una distribuzione logaritmica con parametro \emph{x}:
+%Ora mostreremo che è possibile risalire al numero di specie anche quando si suppone che la SAD a scala globale sia distribuita secondo una distribuzione di Fisher.\\
+Supponiamo ora che la RSA a scala globale segua una distribuzione logaritmica di parametro \emph{x}:
 
 \begin{equation}
-P(\emph{n}|1)=P^{\emph{LS}}(\emph{n}|\emph{x})=\alpha(x)\frac{\emph{x}^\emph{n}}{\emph{n}}, \alpha(x)=-(\log(1-\emph{x}))^{-1}
+P(\emph{n}|1)=P(\emph{n}|\emph{x})=\alpha(\emph{x})\frac{\emph{x}^\emph{n}}{\emph{n}}, \alpha(x)=-(\log(1-\emph{x}))^{-1}
 \end{equation}
 dove $\alpha(x)$ è la costante di normalizzazione.
-Assumendo anche questa volta che la RSA del campione non sia affetta da correlazioni spaziali si trova che anche la log-series soddisfa la proprietà di auto somiglianza.
+Assumendo anche questa volta che la RSA del campione non sia affetta da correlazioni spaziali si trova che anche la distribuzione logaritmica soddisfa la proprietà di invarianza.
 
-\subsection{Proprietà di auto-somiglianza della distribuzione logaritmica di Fisher}
-Sia $P(\emph{n}|1)=\alpha(\emph{x})\emph{P}^{\emph{LS}}(\emph{n}|\emph{x})$ la RSA alla scala globale e denotiamo con $\emph{P}(\emph{k})|\emph{n,p}$ la probabilità che una specie abbia abbondanza \emph{k} nel campione alla scala \emph{p} $\in$ (0,1) condizionata dal fatto  alla scala totale \emph{A} la specie possiede \emph{n} individui.\\
-Se \emph{P}(\emph{k}|\emph{n,p})=$\emph{P}_\emph{binom}(\emph{k}|\emph{n,p})$ è distribuita secondo una binomiale, allora la RSA alla scala del campione, $\emph{P}^\emph{LS}_\emph{sub}(\emph{k}|\emph{p})$, è ancora una log-series per $\emph{k}\ge 1$ con il parametro \emph{x} riscalato:
-\\ \\
+\subsection{Proprietà di invarianza per forma della distribuzione logaritmica di Fisher}
+Sia $P(\emph{n}|1)=\alpha(\emph{x})\emph{P}^{\emph{LS}}(\emph{n}|\emph{x})$ la RSA alla scala globale e denotiamo con $\emph{P}(\emph{k}|\emph{n},\emph{p})$ la probabilità che una specie abbia abbondanza \emph{k} nel campione alla scala \emph{p} $\in$ (0,1) condizionata dal fatto  alla scala totale \emph{A} la specie possiede \emph{n} individui.\\
+Se \emph{P}(\emph{k}|\emph{n,p})=$\emph{P}_\emph{binom}(\emph{k}|\emph{n,p})$ è distribuita secondo una binomiale, allora la RSA alla scala del campione, $\emph{P}^\emph{LS}_\emph{sub}(\emph{k}|\emph{p})$, è ancora una distribuzione logaritmica per $\emph{k}\ge 1$ con il parametro \emph{x} riscalato:
+
 \begin{equation}
 \emph{P}^\emph{LS}_\emph{sub}(\emph{k}|\emph{p})=\begin{cases} \alpha(\emph{x}) \emph{P}^\emph{LS}(\emph{k}|\emph{$ \hat x$}_\emph{p}) & \mbox{ }\mbox{ \emph{k} } \ge 1 \\ 1-\alpha(\emph{x})/\alpha(\emph{$\hat x$}_\emph{p}) & \mbox{ } \mbox{ \emph{k}=0}
 \end{cases}
@@ -134,13 +169,32 @@ con
 \emph{$\hat x$}_\emph{p}=\frac{\emph{px}}{1-\emph{x}(1-\emph{p})}
 \label{eq:LSparametersub}
 \end{equation}
-DIMOSTRAZIONE??
+
+Infatti la probabilità $\emph{P}_\emph{sub}^\emph{LS}(\emph{k}|\emph{p})$ di trovare una specie con popolazione $\emph{k} \ge 0$ nel sotto campione di area \emph{a}=\emph{p}\emph{A} è:
+\begin{equation}
+    \begin{aligned}
+   \emph{k} \ge 1: \emph{P}_\emph{sub}^\emph{LS}(\emph{k}|\emph{p}) & = \sum_{\emph{n}\ge \emph{k}} \emph{P}_\emph{binom}(\emph{k}| \emph{n},\emph{p})P(\emph{n}|1) \\
+     & = \sum_{\emph{k} \ge \emph{n}} \binom{\emph{n}}{\emph{k}}\emph{p}^\emph{k}(1-\emph{p})^\emph{n-k} \cdot \alpha(\emph{x})\frac{\emph{x}^\emph{n}}{\emph{n}}\\
+     & = \alpha(\emph{x})\left( \frac{\emph{px}}{1-\emph{x}(1-\emph{p})} \right)^ \emph{k} \frac{1}{\emph{k}} \\
+     & = \alpha(\emph{x}) \frac{\emph{$ \hat x$}_\emph{p}^\emph{k}}{\emph{k}}=\alpha(\emph{x})\cdot\emph{P}^\emph{LS}(\emph{k}|\emph{$\hat x$}_\emph{p})
+    \end{aligned}
+\end{equation}
+
+dove abbiamo usato la relazione (\ref{eq:LSparametersub}) nella penultima uguaglianza,e
+\begin{equation}
+    \begin{aligned} 
+     \emph{k}=0: \emph{P}_\emph{sub}^\emph{LS}(0|\emph{p}) & = 1- \sum_{\emph{k} \ge 1} \emph{P}_\emph{sub}^\emph{LS}(\emph{k}|\emph{p})\\
+      & = 1- \sum_{\emph{k}=1}^\infty \alpha(\emph{x}) \cdot \frac{\emph{$ \hat x$}_\emph{p}^\emph{k}}{\emph{k}}\\
+     & = 1-\alpha(\emph{x}) \cdot \sum_{\emph{k}=1}^\infty \emph{P}^\emph{LS}(\emph{k}|\emph{$\hat x$}_\emph{p})= 1-\frac{\alpha(\emph{x})}{\alpha(\emph{$\hat x$}_\emph{p})}.
+    \end{aligned}
+\end{equation}
+
 
 Notiamo che (\ref{eq:LSparametersub}) è analoga a (\ref{eq:NBparametersub}). Dunque l'analogo di (\ref{eq:NBparameter}) è
 
 
 \begin{equation}
-\emph{x}=\frac{\emph{$\hat x$}_\emph{p}}{\emph{p}+\emph{$\hat x$}_\emph{p}(1-\emph{p})}
+\emph{x}=\frac{\emph{$\hat x$}_{\emph{p}}^*}{\emph{p}^*+\emph{$\hat x$}_{\emph{p}}^*(1-\emph{p}^*)}
 \label{eq:LSparameter}
 \end{equation}
 
@@ -150,7 +204,7 @@ e l'equazione (\ref{eq:xihatp}) vale anche in questo caso.
 La RSA può essere ottenuta come nell'equazione (\ref{eq:SstarRSA}) ed è data da:
 \\
 \begin{equation}
-P(\emph{k}|\emph{p})=\frac{\emph{P}^\emph{LS}_\emph{sub}}{\sum_{k^{'} \ge 1}^{} \emph{P}^\emph{LS}_\emph{sub}(\emph{k}^{'}|\emph{p})}=\alpha(\emph{$\hat x$}_\emph{p}) \frac{\emph{$\hat x$}^\emph{k}_\emph{p}}{\emph{k}}=P^\emph{LS}(\emph{n}| \emph{$\hat x$}_\emph{p})
+P(\emph{k}|\emph{p}^*)=\frac{\emph{P}^\emph{LS}_\emph{sub}(\emph{k}|\emph{p}^*)}{\sum_{k^{'} \ge 1}^{} \emph{P}^\emph{LS}_\emph{sub}(\emph{k}^{'}|\emph{p}^*)}=\alpha(\emph{$\hat x$}_{\emph{p}}^*) \frac{\emph{$\hat x$}^\emph{k}_{\emph{p}}^*}{\emph{k}}=\alpha(\emph{$\hat x$}_{\emph{p}}^*)P^\emph{LS}(\emph{n}| \emph{$\hat x$}_{\emph{p}}^*)
 \end{equation}
 \\ 
 Poiché la distribuzione logaritmica di Fisher è un caso particolare della binomiale negativa, è anch'essa invariante per scala.
@@ -160,11 +214,11 @@ Poiché la distribuzione logaritmica di Fisher è un caso particolare della bino
 Il numero di specie con popolazione $\emph{k} \ge 1$ presenti nel sotto-campione di area \emph{a}=\emph{pA} è dato da:
 
 \begin{equation}
-S_\emph{p}(k) \equiv S\emph{P}_\emph{sub}(\emph{k}|\emph{p})=S\alpha(\emph{x})\frac{\emph{$\hat x$}^\emph{k}_\emph{p}}{\emph{k}}=\hat \alpha \frac{\emph{$\hat x$}^\emph{k}_\emph{p}}{\emph{k}}
+S_\emph{p}(k) \equiv S\emph{P}_\emph{sub}^\emph{LS}(\emph{k}|\emph{p})=S\alpha(\emph{x})\frac{\emph{$\hat x$}^\emph{k}_\emph{p}}{\emph{k}}=\hat \alpha \frac{\emph{$\hat x$}^\emph{k}_\emph{p}}{\emph{k}}
 \end{equation} 
 \\
 dove abbiamo unito le costanti S e $\alpha (\emph{x})$ in un unico termine $\hat \alpha$ che non dipende dalla scala \emph{p} del campione. Quando ci riferiremo alla scala $\emph{p}^*$ useremo, per brevità di notazione, $S^*(\emph{k})\equiv S_{\emph{p}^*}(\emph{k})$.\\
-Allora il numero totale di specie $S^*$ e l'abbondanza totale $N^*$ (?) alla scala $\emph{p}^*$ sono date rispettivamente da:
+Allora il numero totale di specie $S^*$ e l'abbondanza totale $N^*$ alla scala $\emph{p}^*$ sono date rispettivamente da:
 
 \begin{equation}
 S^*=\sum_{\emph{k}=1}^\infty S^*(\emph{k})=-\hat \alpha \log (1-\emph{$\hat x$}_{\emph{p}^*})
@@ -172,7 +226,7 @@ S^*=\sum_{\emph{k}=1}^\infty S^*(\emph{k})=-\hat \alpha \log (1-\emph{$\hat x$}_
 \end{equation}
 
 \begin{equation}
-N^*=\emph{k}\sum_{\emph{k}=1}^\infty S^*(\emph{k})=\hat \alpha \frac{\emph{$\hat x$}_{\emph{p}^*}}{1-\emph{$\hat x$}_{\emph{p}^*}}
+N^*=\sum_{\emph{k}=1}^\infty \emph{k}S^*(\emph{k})=\hat \alpha \frac{\emph{$\hat x$}_{\emph{p}^*}}{1-\emph{$\hat x$}_{\emph{p}^*}}
 \label{eq:NstarLS}
 \end{equation}
 \\
@@ -204,7 +258,7 @@ S=\hat \alpha \log(1+ \frac{N}{\hat \alpha}),  \hat \alpha=S\alpha(\emph{x}).
 \label{eq:SalphaLS}
 \end{equation}
 
-Dunque per dedurre la biodiversità a scala globale, S, è necessaria una stima dell'abbondanza totale N. Prendiamo N=$N^*/ \emph{p}^*$. Notiamo che questo è consistente con il nostro quadro teorico nel quale assumiamo che la RSA sia "form-invariant(?)": infatti si può dimostrare che, se si assume che la RSA segua una distribuzione di Fisher a scala globale, il valor medio dell'abbondanza totale riscala linearmente con l'area:
+Dunque per dedurre la biodiversità a scala globale, S, è necessaria una stima dell'abbondanza totale N. Prendiamo N=$N^*/ \emph{p}^*$. Notiamo che questo è consistente con il nostro quadro teorico nel quale assumiamo che la RSA sia \emph{invariante per forma}: infatti si può dimostrare che, se si assume che la RSA segua una distribuzione di Fisher a scala globale, il valor medio dell'abbondanza totale riscala linearmente con l'area:
 
 \begin{equation}
 \mathbb{E}(N^*)=\sum_{\emph{k}=1}^\infty \emph{k}S^*(\emph{k})=\sum_{\emph{k}=1}^\infty \emph{k} \hat \alpha  \frac{\hat {\emph{x}}^\emph{k}_{\emph{p}^*}}{\emph{k}}=\alpha \frac{\hat {\emph{x}}_{\emph{p}^*}}{1-\hat {\emph{x}}_{\emph{p}^*}}= \hat 	\alpha \frac{\emph{px}}{1-x}= \emph{p}^* \mathbb{E}(N),
@@ -212,17 +266,23 @@ Dunque per dedurre la biodiversità a scala globale, S, è necessaria una stima 
 \\
 dove abbiamo usato la  (\ref{eq:LSparametersub}).
 
+Per dedurre in modo alternativo la biodiversità a scala totale, analogamente a quanto fatto per il metodo della binomiale negativa, si può usare questa relazione:
 
+\begin{equation}
+   S=\frac{S^*}{1-\emph{P}_\emph{sub}^\emph{LS}(\emph{k=0}|\emph{p}^*)}=S^*\frac{\log(1-\emph{x})}{\log(1-\emph{$\hat x$}_{\emph{p}^*})}.
+\end{equation}
+
+In questo caso non bisogna avere una stima del numero totale di individui N nell'area \emph{A}. È stato verificato su dati riguardanti la biodiversità nelle foreste che i due metodi sono danno previsioni equivalenti. (cit!!)
 
 \section{Metodo $Chao_\emph{wor}$}
-Vediamo ora il metodo non parametrico sviluppato da Chao, nato nell'ambito di uno schema di campionamento senza reinserimento. Questo è il sistema id indagine più usato quando si devono campionare individui come, ad esempio, insetti che vengono uccisi quando osservati: dunque nessun individuo può essere osservato ripetutamente. Inoltre viene applicato anche ad altri protocolli di campionamento, ad esempio nello studio delle foreste, nel quale gli alberi vengono censiti per 'plots o quadrats ??' che sono selezionati senza ripetizione. In questo schema di campionamento ogni individuo (o ogni unità di campionamento) può essere indagato solo una volta.\\
+Vediamo ora il metodo non parametrico sviluppato da Chao, nato nell'ambito di uno schema di campionamento senza reinserimento, il pedice \emph{wor} sta infatti per "\emph{without repetition}". Questo è il sistema di indagine più usato quando si devono campionare individui che non possono essere osservati ripetutamente, ad esempio nello studio delle foreste, nel quale gli alberi vengono censiti in piccole aree che sono selezionate senza ripetizione. In questo schema di campionamento ogni individuo o ogni unità di campionamento possono essere indagati una sola volta.\\
 Assumiamo che in un ecosistema ci siano S specie indicizzate da 1 a S.
-Sia $N_\emph{i}$ (abbondanza assoluta) il numero di individui appartenenti alla \emph{i}-esima specie, \emph{i}=1,...,S, e $N_\emph{i}>0$. La popolazione totale dunque è data da $N=\sum_{\emph{i}=1}^{S} N_\emph{i}$. Assumiamo che la dimensione del campione N sia nota, cioè è nota la frazione di campionamento.\\
+Sia $N_\emph{i}$ (abbondanza assoluta) il numero di individui appartenenti alla \emph{i}-esima specie, \emph{i}=1,...,S, e $N_\emph{i}>0$. La popolazione totale dunque è data da $N=\sum_{\emph{i}=1}^{S} N_\emph{i}$. Assumiamo che la dimensione del campione N sia nota, cioè che sia nota la frazione di campionamento.\\
 Supponiamo di prendere dall'intero ecosistema un sotto campione di \emph{n} individui, campionandoli senza reinserimento. Sia $X_\emph{i}$ la frequenza della specie campionata cioè il numero di individui della \emph{i}-esima specie osservati nel campione. Solo le specie con  $X_\emph{i}>0$ sono osservabili nel campione. Sia $\emph{f}_\emph{k}$ il numero di specie nel campione che sono rappresentate esattamente da \emph{k} individui, dunque $\emph{f}_0$ denota il numero di specie che non sono state osservate nel campione. Dunque abbiamo che $\emph{n}=\sum_{\emph{i}=1}^S X_\emph{i}=\sum_{\emph{k}>1} \emph{k}\emph{f}_\emph{k}$.
 Definiamo $\emph{p}^*=\emph{n}/N$ la frazione di campionamento e $S^*$ il numero di specie osservate nel sotto campione, $S^*=\sum_{\emph{k>1}} \emph{f}_\emph{k}$.\\
-Generalmente, la probabilità che una specie venga rilevata, o rate di rilevamento, dipende sia dall'abbondanza della specie nel campione sia da caratteristiche specifiche degli individui come ad esempio il modo di spostarsi e muoversi all'interno dell'ambiente , colore, forma e dimensione.\\ Consideriamo dunque il caso generale in cui la probabilità di trovare un individuo possa variare a seconda della specie di appartenenza e indichiamola con $\theta_\emph{i}>0$ per la \emph{i}-esima specie.
+Generalmente la probabilità che una specie venga rilevata, o rate di rilevamento, dipende sia dall'abbondanza della specie nel campione sia da caratteristiche specifiche degli individui come ad esempio il modo di spostarsi e muoversi all'interno dell'ambiente , colore, forma e dimensione.\\ Consideriamo dunque il caso generale in cui la probabilità di trovare un individuo possa variare a seconda della specie di appartenenza e indichiamola con $\theta_\emph{i}>0$ per la \emph{i}-esima specie.
 Sotto queste ipotesi, definendo $\emph{q}_\emph{i}=N_\emph{i}/N $ come l'abbondanza relativa, il rate di rilevamento per la \emph{i}-esima specie diventa $\psi_{\emph{i}}=\frac{N_\emph{i}\theta_\emph{i}}{\sum_{\emph{k}=1}^S N_\emph{k}\theta_\emph{k}}=\frac{\emph{q}_\emph{i}\theta_\emph{i}}{\sum_{\emph{k}=1}^S \emph{q}_\emph{k}\theta_\emph{k}}$ con \emph{i}=1,...,S.
-Intuitivamente, il numero di individui che hanno la stessa possibilità di essere osservati è dato da $N_\emph{i}\psi_\emph{i}$, ma poiché questo potrebbe essere un numero non intero, definiamo una variabile a valori interi $Z_\emph{i}$, che rappresenta il numero di individui che hanno la stessa possibilità di essere osservati per la \emph{i}-esima specie. Siccome $Z\ge 1$ e la frazione di individui campionata è \emph{n}/N, si può modellare il vettore \textbf{Z}=($Z_1,Z_2,...,Z_S$) attraverso una distribuzione multinomiale troncata con N celle totali e con celle di probabilità le ($\psi_1^*,\psi_2^*,...,\psi_S^*$), dove $\psi_\emph{i}^*=\psi_1$/P{\emph{z},$\emph{z}_\emph{i} \ge 1 $, \emph{i}=1,...,S}, \textbf{z}=($\emph{z}_1 , \emph{z}_2,...,\emph{z}_S$) e $\sum_{\emph{i}=1}^S \emph{z}_\emph{i}=N$. Per ogni dato valore di \textbf{z}=($\emph{z}_1 , \emph{z}_2,...,\emph{z}_S$), le frequenze con cui appaiono gli individui della specie \emph{i}-esima nel campione, ($X_1,X_2,...,X_S$), seguono una distribuzione ipergeometrica generalizzata:
+Intuitivamente, il numero di individui che hanno la stessa possibilità di essere osservati è dato da $N_\emph{i}\psi_\emph{i}$, ma poiché questo potrebbe essere un numero non intero, definiamo una variabile a valori interi $Z_\emph{i}$, che rappresenta il numero di individui che hanno la stessa possibilità di essere osservati per la \emph{i}-esima specie. Siccome $Z\ge 1$ e la frazione di individui campionata è \emph{n}/N, si può modellare il vettore \textbf{Z}=($Z_1,Z_2,...,Z_S$) attraverso una distribuzione multinomiale troncata con N celle totali e con celle di probabilità le ($\psi_1^*,\psi_2^*,...,\psi_S^*$), dove $\psi_\emph{i}^* = \psi_1 / P  \left\{\emph{z},\emph{z}_\emph{i} \ge 1 , \emph{i}=1,...,S \right\} $, \textbf{z}=($\emph{z}_1 , \emph{z}_2,...,\emph{z}_S$) e $\sum_{\emph{i}=1}^S \emph{z}_\emph{i}=N$. Per ogni dato valore di \textbf{z}=($\emph{z}_1 , \emph{z}_2,...,\emph{z}_S$), le frequenze con cui appaiono gli individui della specie \emph{i}-esima nel campione, ($X_1,X_2,...,X_S$), seguono una distribuzione ipergeometrica generalizzata:
 \\ \\
 \begin{equation}
     P(X_\emph{i}=\emph{x}_\emph{i}, \emph{i}=1,2,...,S)=\binom{\emph{z}_1}{\emph{x}_1}\binom{\emph{z}_2}{\emph{x}_2}...\binom{\emph{z}_S}{\emph{x}_S}/\binom{N}{\emph{n}}
@@ -239,18 +299,18 @@ P(X_\emph{i}=\emph{x}_\emph{i})=\binom{\emph{z}_\emph{i}}{\emph{k}}\binom{N-\emp
 Vediamo dunque com'è possibile dedurre, sotto queste ipotesi, il numero di specie a scala totale a partire da un vettore di abbondanze ottenuto esaminando una frazione dell'intero ecosistema.\\ \\
 Il valore di aspettazione per i contatori di frequenze $\emph{f}_\emph{k}$ usando la (\ref{eq:multinomial}) è:
 \begin{equation}
-    \mathbb{E}(\emph{f}_\emph{k})=\sum_\emph{i}^S P(X-\emph{i}=\emph{x}_\emph{x})= \sum_{\emph{i}=1}^S \binom{\emph{z}_\emph{i}}{\emph{k}}\binom{N-\emph{z}_\emph{i}}{\emph{n}-\emph{k}}/\binom{N}{\emph{n}}
+    \mathbb{E}(\emph{f}_\emph{k})=\sum_\emph{i}^S P(X_\emph{i}=\emph{k})= \sum_{\emph{i}=1}^S \binom{\emph{z}_\emph{i}}{\emph{k}}\binom{N-\emph{z}_\emph{i}}{\emph{n}-\emph{k}}/\binom{N}{\emph{n}}
     \label{eq:expectationvalue}
 \end{equation}
 
 In particolare:
 $$\mathbb{E}(\emph{f}_o)=\sum_{\emph{i}=1}^S \binom{N-\emph{z}_\emph{i}}{\emph{n}}/\binom{N}{\emph{n}}$$
 
-$$ \mathbb{E}(\emph{f}_1)=\sum_{\emph{i}=1}^S \binom{\emph{z}_\emph{i}}{1} \binom{N-\emph{z}_\emph{i}}{\emph{n-1}}/\binom{N}{\emph{n}}=\sum_{\emph{i}=1}^S\frac{\emph{n}\emph{z}_\emph{i}}{N-\emph{z}_\emph{i}-\emph{n}+1} \binom{N-\emph{z}_\emph{i}}{\emph{n}}/\binom{N}{\emph{n}}$$
+$$ \mathbb{E}(\emph{f}_1)=\sum_{\emph{i}=1}^S \binom{\emph{z}_\emph{i}}{1} \binom{N-\emph{z}_\emph{i}}{\emph{n}-1}/\binom{N}{\emph{n}}=\sum_{\emph{i}=1}^S\frac{\emph{n}\emph{z}_\emph{i}}{N-\emph{z}_\emph{i}-\emph{n}+1} \binom{N-\emph{z}_\emph{i}}{\emph{n}}/\binom{N}{\emph{n}}$$
 
 
 
-$$ \mathbb{E}(\emph{f}_2)=\sum_{\emph{i}=1}^S \binom{\emph{z}_\emph{i}}{2} \binom{N-\emph{z}_\emph{i}}{\emph{n-2}}/\binom{N}{\emph{n}}=\sum_{\emph{i}=1}^S\frac{\emph{n}(\emph{n}-1)\emph{z}_\emph{i}(\emph{z}_\emph{i}-1)}{2(N-\emph{z}_\emph{i}-\emph{n}+1)(N-\emph{z}_\emph{i}-\emph{n}+2)} \binom{N-\emph{z}_\emph{i}}{\emph{n}}/\binom{N}{\emph{n}}$$
+$$ \mathbb{E}(\emph{f}_2)=\sum_{\emph{i}=1}^S \binom{\emph{z}_\emph{i}}{2} \binom{N-\emph{z}_\emph{i}}{\emph{n}-2}/\binom{N}{\emph{n}}=\sum_{\emph{i}=1}^S\frac{\emph{n}(\emph{n}-1)\emph{z}_\emph{i}(\emph{z}_\emph{i}-1)}{2(N-\emph{z}_\emph{i}-\emph{n}+1)(N-\emph{z}_\emph{i}-\emph{n}+2)} \binom{N-\emph{z}_\emph{i}}{\emph{n}}/\binom{N}{\emph{n}}$$
 
 Per la disuguaglianza di Cauchy-Schwarz si ha:
 
