@@ -1,13 +1,14 @@
 \chapter{Derivazione delle distribuzioni binomiale negativa e logaritmica}
-Prima di entrare nel merito dei modelli per la stima del numero di specie, vediamo come si possono ricavare la distribuzione binomiale negativa e la distribuzione logaritmica modellizzando la dinamica dell'abbondanza delle specie attraverso un'equazione che descrive la nascita e la morte degli individui : la \emph{birth-death master equation}\cite{2016AzaelePeruzzo}.\\
-Entrambe le distribuzioni possono essere derivate da principi primi alla base dei processi biologici: sia $\emph{P}_{\emph{n,s}}(t)$ la probabilità che ad un certo tempo t, la specie \emph{s} abbia esattamente \emph{n} individui, con $\emph{s}\in\left \{ 1,...,S \right \}$. Assumiamo che la dinamica della popolazione di ogni specie sia governata da due termini: i rate di nascita e di morte, rispettivamente, $\emph{b}_\emph{{n,s}}$ e $\emph{d}_\emph{{n,s}}$, per ogni specie \emph{s} con \emph{n} individui.
+Nel modello parametrico analizzato in questo lavoro, assumeremo che la SAD sia ben descritta da una binomiale negativa.
+Prima di entrare nel merito dei modelli per la stima del numero di specie, vediamo come si può ricavare tale distribuzione (come anche la distribuzione logaritmica, molto utilizzata in ecologia), modellizzando la dinamica dell'abbondanza delle specie attraverso un'equazione che descrive la nascita e la morte degli individui, la \emph{birth-death master equation}\cite{2016AzaelePeruzzo}.\\
+Entrambe le distribuzioni possono essere derivate da principi alla base dei processi biologici: sia $\emph{P}_{\emph{n,s}}(t)$ la probabilità che ad un certo tempo $t$, la specie \emph{s} abbia esattamente \emph{n} individui, con $\emph{s}\in\left \{ 1,...,S \right \}$. Assumiamo che la dinamica della popolazione di ogni specie sia governata da due termini: i rate di nascita e di morte, rispettivamente, $\emph{b}_\emph{{n,s}}$ e $\emph{d}_\emph{{n,s}}$, per ogni specie \emph{s} con \emph{n} individui.
 L'equazione che regola l'evoluzione di $\emph{P}_{\emph{n,s}}(t)$ per $\emph{n}\ge0$ è la seguente:
 \begin{equation}
 \frac{\partial\emph{P}_{\emph{n,s}}(t)}{\partial\emph{t}}=
 \emph{P}_{\emph{n-1,s}}(t)\emph{b}_\emph{{n-1,s}}+\emph{P}_{\emph{n+1,s}}(t)\emph{d}_\emph{{n+1,s}}-\emph{P}_{\emph{n,s}}(t)\emph{b}_\emph{{n,s}}-\emph{P}_{\emph{n,s}}(t)\emph{d}_\emph{{n,s}}.
 \label{eq:master}
 \end{equation}
-Per evitare che \emph{n} sia negativo è necessario imporre delle condizioni al contorno: imponendo condizioni al contorno riflettenti, $\emph{b}_\emph{{-1,s}}=\emph{d}_\emph{{0,s}}=0$. %la (\ref{eq:master}) è valida anche per $\emph{n}=0$ e \emph{n=1}. 
+In questo lavoro, per evitare che \emph{n} sia negativo, imponiamo delle condizioni al contorno riflettenti: $\emph{b}_\emph{{-1,s}}=\emph{d}_\emph{{0,s}}=0$. %la (\ref{eq:master}) è valida anche per $\emph{n}=0$ e \emph{n=1}. 
 Si trova che per $\emph{n}>0$ la soluzione stazionaria è:
 \begin{equation}
 \emph{P}_{\emph{n,s}}=P_{0,\emph{s}}\prod_{i=0}^{n-1}\frac{\emph{b}_\emph{{i,s}}}{\emph{d}_\emph{{i+1,s}}}
@@ -21,13 +22,13 @@ dove il termine $P_{0,\emph{s}}$ è il fattore di normalizzazione che può esser
 Assumiamo che tutti gli individui, siano essi appartenenti a specie rare o comuni, abbiano la stessa probabilità di morire, sopravvivere e riprodursi. Allora i tassi di nascita e morte pro capite non dipendono dal numero di individui \emph{n} appartenenti alla specie.
 Definiamo quindi $\emph{b}_\emph{{n,s}}$ come:
 \begin{equation}
-\emph{b}_\emph{n,s}=\emph{b}_\emph{s}(n+\emph{r}_\emph{s}).
+\emph{b}_\emph{n,s}=\emph{b}_\emph{s}(n+\emph{r}_\emph{s}),
 \label{eq:birthNB}
 \end{equation}
 dove $\emph{b}_\emph{s}$ è il tasso di nascita pro capite, e $\emph{r}_\emph{s}$ è un parametro che tiene conto di eventi di immigrazione o di interazioni intraspecifiche.\newline
 Analogamente definiamo $\emph{d}_\emph{n,s}$: 
 \begin{equation}
-\emph{d}_\emph{n,s}=\emph{d}_\emph{s}\emph{n}.
+\emph{d}_\emph{n,s}=\emph{d}_\emph{s}\emph{n},
 \label{eq:deathNB}
 \end{equation}
 dove $\emph{d}_\emph{s}$ è tasso di morte pro capite.
@@ -38,7 +39,7 @@ $$
 $$
 La costante di normalizzazione può essere calcolata imponendo:
 $$
-1=\sum_{n=1}^\infty \emph{P}_{\emph{n,s}}=P_\emph{0,s}\sum_{n=1}^\infty\binom{n+\emph{r}_\emph{s}-1}{n}\xi_\emph{s}^n=P_\emph{0,s}[1-(1-\xi_\emph{s})^{\emph{r}_\emph{s}}](1-\xi_\emph{s})^{-\emph{r}_\emph{s}}
+1=\sum_{n=1}^\infty \emph{P}_{\emph{n,s}}=P_\emph{0,s}\sum_{n=1}^\infty\binom{n+\emph{r}_\emph{s}-1}{n}\xi_\emph{s}^n=P_\emph{0,s}[1-(1-\xi_\emph{s})^{\emph{r}_\emph{s}}](1-\xi_\emph{s})^{-\emph{r}_\emph{s}}.
 $$
 Dunque la probabilità che una specie \emph{s} abbia \emph{n} individui all'equilibrio è data da una binomiale negativa di parametri $(\emph{r}_\emph{s}, \xi_\emph{s})$ e normalizzata per abbondanze non nulle ($n\ge 1$):
 \begin{equation}
@@ -48,11 +49,11 @@ Dunque la probabilità che una specie \emph{s} abbia \emph{n} individui all'equi
 Sotto l'ipotesi della teoria neutrale secondo la quale le specie sono considerate demograficamente equivalenti, possiamo rimuovere l'indice \emph{s} di specie dall'equazione sopra, ottenendo così una RSA per l'ecosistema in esame.
 
 \section{Distribuzione logaritmica di Fisher}
-Notiamo che, scegliendo in modo diverso il termine $\emph{b}_\emph{n,s}$, si può ottenere, partendo dalla \emph{birth death master equation} (\ref{eq:master}), un'altra importante distribuzione: la distribuzione logaritmica di Fisher.
-Assumiamo che la dinamica della popolazione di una comunità sia governata dal corso ecologico e dalla speciazione casuale invece che dalla migrazione da comunità esterne.
+Notiamo che, scegliendo in modo diverso il termine $\emph{b}_\emph{n,s}$, si può ottenere, partendo dalla \emph{birth-death master equation} (\ref{eq:master}), un'altra importante distribuzione: la distribuzione logaritmica di Fisher.
+Assumiamo che nella dinamica della popolazione di una comunità entri in gioco il fenomeno di speciazione casuale invece che quello di migrazione da comunità esterne.
 Allora possiamo porre:
 \begin{equation}
-    \emph{b}_\emph{n,s}=\emph{b}_\emph{s}n+\delta_\emph{n,0}\nu
+    \emph{b}_\emph{n,s}=\emph{b}_\emph{s}n+\delta_\emph{n,0}\nu.
 \label{eq:birthlog}
 \end{equation}
 Aggiungendo la condizione al contorno riflettente $\emph{b}_\emph{0,s}=\nu$ si ha che il tasso di nascita tiene conto della riproduzione e della speciazione. In particolare, il parametro $\nu$ assicura che, se le specie si estinguono, la comunità rimane sempre popolata da un individuo.
