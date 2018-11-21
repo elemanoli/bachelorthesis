@@ -1,1 +1,109 @@
-\chapter{Applicazioni}
+\chapter{Applicazione della teoria ecologica alle comunità microbiche}
+
+Gli ecosistemi di comunità microbiche presenti nel corpo umano giocano un ruolo molto importante per la nostra salute\cite{Costello1255}. Ogni individuo può essere visto come un insieme di habitat occupati da comunità microbiche formatesi attraverso i processi fondamentali dell'ecologia: diffusione, diversificazione locale, selezione ambientale e migrazione. I tanti e svariati membri delle comunità hanno un ruolo cruciale nel mantenimento della salute umana liberando essi nutrienti ed energia altrimenti inaccessibili, favorendo la differenziazione dei tessuti, stimolando il sistema immunitario e proteggendo l'ospite dall'invasione da parte di agenti patogeni. 
+Un certo numero di disturbi clinici, come l'obesità, la malnutrizione e malattie infiammatorie, sono stati associati all'alterazione della composizione delle comunità microbiche presenti nell'ospite.\\
+Il corpo umano, dunque, può essere visto come un ecosistema e la salute di un individuo può essere associata ai servizi forniti
+all'organismo dalle comunità microbiche.\\
+Recenti scoperte di variazioni inaspettate nella composizione del microbioma di individui sani hanno evidenziato l'importanza di identificare i processi che possano dare origine ad un tale cambiamento: la teoria dell'ecologia cerca di spiegare e predire questi fenomeni. Inoltre, il modello ecologico trasportato nel mondo delle pratiche cliniche può portare ad un miglioramento delle cure fornite ai pazienti: infatti, una visione completa della comunità che si va ad alterare con una certa terapia e non solo del batterio a cui è dovuto il disturbo, può portare ad un nuovo approccio clinico che nella cura di una malattia tiene conto dell'intero microbioma dell'individuo.
+
+\section{Sequenziamento del DNA degli individui in comunità microbiche}
+Ottenere dati di biodiversità per una comunità microbica non è una cosa semplice: dopo averne preso una campione, per riconoscere le specie presenti all'interno è necessario sequenziarne il DNA.\\
+Le lo sviluppo di tecniche di sequenziamento di nuova generazione (NGS \emph{next-generation sequencing}) ha portato ad un incremento delle risorse impegnate in questo tipo di ricerca, aumentando rapidamente le nostre conoscenze sulla composizione e sulle funzioni delle popolazioni batteriche in diversi ambienti\cite{shotgun}. Nel contesto clinico, il microbioma dell'intestino umano è stato soggetto ad indagini sofisticate che hanno rivelato una forte interazione tra i microrganismi, il sistema immunitario e il metabolismo. Una ridotta biodiversità o uno squilibrio di individui all'interno comunità microbiche dell'intestino umano sono state associate ad una serie di fenotipi come l'obesità, malattie infiammatorie dell'intestino, diabete di tipo \RNum{2} e numerosi altri disturbi.\\
+La maggior parte degli studi riguardanti la comprensione delle dinamiche che governano le popolazioni batteriche sono stati condotti attraverso approcci metagenomici, che studiano cioè l'insieme dei diversi materiali genetici, che sono semplici ed efficaci in termini di costi. I principali metodi di sequenziamento del DNA sono il metodo \emph{shotgun} e il metodo $16S$ che si basa appunto sul riconoscimento del gene ribosomiale $16S$.
+%Ci concentreremo ora sul metodo \emph{shotgun}, in quanto i dati che utilizzeremo successivamente in questo lavoro sono stati ottenuti attraverso questo metodo.
+Il metodo \emph{shotgun} è una tecnica sperimentale di sequenziamento dell'intero genoma di un organismo\cite{HEATHER20161}. Poiché a causa dell'elevata lunghezza della sequenza genetica è impossibile sequenziare il genoma in un unico passaggio, esso consiste nella creazione di numerosi piccoli frammenti di DNA che vengono clonati e sequenziati separatamente da entrambi i lati, questi poi vengono riassemblati \emph{in silico} attraverso criteri di compatibilità e sovrapposizione, in modo da ottenere una lunga sequenza continua. Con il metodo $16S$ invece si va a sequenziare il gene ribosomale $16S$ il quale differisce per le varie specie e ne permette dunque la classificazione.\\
+Le sequenze così ottenute vengono poi confrontate con quelle presenti nei database che contengono le informazioni sui metagenomi dei batteri fin'ora sequenziati, in particolare il progetto microbioma umano (HMP \emph{human microbiome project}) contiene una vasta raccolta di sequenze di microorganismi associati al corpo umano inclusi eucarioti, batteri, archei e virus, ottenute sia con il metodo \emph{shotgun} che con il sequenziamento dell' $S16$. Attingendo a queste informazioni è dunque possibile ottenere dei dati di abbondanza per le specie batteriche per campioni di interesse.
+
+
+
+\section{Applicazione dei metodi di \emph{upscaling}}
+Dato un campione di $N$ individui, cioè, nel caso di dati metagenomici, di $N$ sequenze di DNA, grazie ai metodi di classificazione tassonomica sopra citati, si riesce ad assegnare la specie solamente ad una frazione $p^*N$ di questi; le restanti sequenze vengono scartate perché non risultano esserci  batteri con tali stringhe di DNA nel database di riferimento. Analogamente a quanto viene fatto in ecologia, utilizzando i metodi \emph{upscaling} si potrebbe usare tale frazione $p^*$ per capire quante specie erano in realtà presenti nell'intero campione. Questa $p^*$ può essere stimata come il rapporto tra il numero di sequenze che hanno trovato riscontro nel database $N^*$ e il numero di sequenze inizialmente presenti nel campione $N$, dunque $p^*=N^*/N$.  Le specie assenti nel campione di riferimento in ecologia corrispondono quindi, in questo contesto, alle specie a cui appartengono le sequenze che non riescono ad essere classificate.
+
+Per questo lavoro sono stati ottenuti, utilizzando il software Kaiju\cite{Kaiju}, due vettori di abbondanze batteriche a partire da campioni sequenziati con metodo \emph{shotgun}. In particolare un campione riguarda il microbioma un individuo sano mentre l'altro riguarda quello di un individuo affetto dal morbo di Crohn, una malattia dell'intestino. I dati utilizzati sono stati presi dallo studio svolto nell'articolo "Characterization of the gut microbiome using 16S or shotgun metagenomics"\cite{shotgun}. \\
+
+\subsection{Test}
+Per sondare l'efficienza nell'ambito delle comunità microbiche dei metodi di \emph{upscaling} precedentemente descritti sono stati condotti dei test su ognuno dei due campioni, procedendo in questo modo:
+\begin{itemize}
+    \item per ogni campione sono stati selezionati 100 sotto campioni in modo casuale, ognuno contenete l'$1\%$ della popolazione totale;
+    
+    \item ad ogni sotto campione sono stati applicati i metodi di \emph{upscaling}, i due parametrici della binomiale negativa e della distribuzione logaritmica e il metodo non parametrico $\emph{Chao}_\emph{wor}$, con con $p^*=0.01$;
+    
+    \item sono stati predetti i numeri di specie alla scala globale e confrontati con quelli realmente presenti nei due campioni iniziali.
+\end{itemize}
+
+Analizzando i risultati dei test notano i seguenti fatti:
+\begin{itemize}
+    \item il metodo $\emph{Chao}_\emph{wor}$ è inapplicabile. Questo infatti si basa sul conteggio del numero di specie rare, popolate cioè da uno o due individui. Nel caso di comunità microbiche non vengono identificate specie con questo tipo di caratteristiche e dunque il metodo non fornisce alcun risultato;
+    
+    \item il metodo parametrico della distribuzione logaritmica di Fisher sovrastima il numero di specie, in particolare predice circa il doppio del numero di specie realmente presenti nel campione iniziale;
+    
+    \item il metodo parametrico della binomiale negativa fornisce in tutti i casi analizzati una stima corretta del numero di specie presenti nel campione.
+    
+\end{itemize}
+
+Alla luce dei risultati dei test applichiamo ai nostri campioni solo i due metodi parametrici.\newline
+
+%\begin{table}[]
+%\centering
+%\begin{tabular}{l|l|l|l|l|}
+%\cline{2-5}
+%                                     & \textbf{nSpecie} & \textbf{LS} & \textbf{NB} & \textbf{Chao}
+%                         \\ \hline
+%\multicolumn{1}{|l|}{\textbf{Sano}}  & 43               & 78          & 43          & non applicabile        \\ \hline
+%\multicolumn{1}{|l|}{\textbf{Crohn}} & 34.7              & 68          & 34          & non applicabile        \\ \hline
+%\end{tabular}
+%\caption{Simulazione Sniper Attack}
+%\label{Tab:sniperattack}
+%\end{table}
+
+\subsection{Risultati di \emph{upscaling}}
+Nelle seguenti figure sono rappresentate le RSA dei due campioni.
+
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{Figure/RSAH.eps}
+    \caption{RSA individuo sano.}
+    \label{fig:RSAH}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{Figure/RSAC.eps}
+    \caption{RSA individuo malato.}
+    \label{fig:RSAC}
+  \end{minipage}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l|l|l|l|l|}
+\cline{2-5}
+                                     & $\mathbf{S^*}$ & $\mathbf{N^*}$ & $\mathbf{N}$ & $\mathbf{p^*}$ \\ \hline
+\multicolumn{1}{|l|}{\textbf{Sano}}  & 43                & 176531               & 733551           & 0.240653    \\ \hline
+\multicolumn{1}{|l|}{\textbf{Crohn}} & 34                & 159376               & 268205           & 0.594232    \\ \hline
+\end{tabular}
+\caption{Dati Iniziali.}
+\label{Tab:dati}
+\end{table}
+
+Nella tabella \ref{Tab:dati} sono indicati, per ognuno dei due campioni, il numero di specie $S^*$ e di individui $N^*$ riconosciuti, il numero di sequenze $N$ ricostruite prima che venissero scartate quelle che non hanno trovato riscontro nel database e la $p^*$ corrispondente, stimata come $p^*=N^*/N$.
+
+
+Assumendo per la RSA una forma binomiale negativa, facendo il fit dei dati otteniamo i seguenti parametri:
+
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l|l|l|l|}
+\cline{2-4}
+                                     & \textit{r}    & $\mathbf{\hat \xi}_{p^*}$                & $\mathbf{\xi}$             \\ \hline
+\multicolumn{1}{|l|}{\textbf{Sano}}  & $2.4 \pm 0.4$ & $0.9994 \pm 0.0001$ & $0.999861 \pm $ \\ \hline
+\multicolumn{1}{|l|}{\textbf{Crohn}} & $1.2 \pm 0.3$ & $0.999752 \pm $     & $0.9999 \pm 0.00007$ \\ \hline
+\end{tabular}
+\caption{Parametri Binomiale Negativa.}
+\label{Tab:dati}
+\end{table}
+
+assumendo invece una distribuzione logaritmica otteniamo:
+
