@@ -12,15 +12,14 @@
 
 
 La ricchezza delle specie, cioè il numero di specie, è la misura più intuitiva e più frequentemente usata per caratterizzare la diversità di un dato insieme: questa possiede caratteristiche e proprietà matematiche intuitive ben visibili, utili per costruire modelli di comunità. \\
-La ricchezza di specie dipende fortemente dal metodo di campionamento e dalla completezza del campione, il modo di raccogliere le informazioni porta ad avere principalmente due tipi di dati: dati di abbondanza e dati di incidenza.\\
+La ricchezza di specie dipende fortemente dal metodo di campionamento e dalla completezza del campione, il modo di raccogliere le informazioni porta ad avere principalmente due tipi di dati: dati di abbondanza e dati di incidenza\cite{doi:ChaoChiu2016}\cite{presabs}.\\
 Per fissare la notazione: consideriamo una comunità costituita da N individui appartenenti a S specie distinte. Sia $N_\emph{i}$ il numero di individui della \emph{i}-esima specie con \emph{i}=1,2,...,S, $N_\emph{i}>0$ e $N=\sum_{n=1}^S N_\emph{i}$.
 L'abbondaza relativa della specie \emph{i}-esima è $p_\emph{i}=N_\emph{i}/N$, dunque $\sum_{n=1}^S p_\emph{i}=1$. Qui N, S, $N_\emph{i}$ e $p_\emph{i}$ rappresentano i valori veri, ma sconosciuti, dei parametri fondamentali dell'insieme in esame.\\
-In base al metodo di campionamento si distinguono due tipi di strutture dati: dati di abbondanza e dati di incidenza\cite{doi:ChaoChiu2016}.
 
 \subsubsection{Dati di abbondanza}
-In molti studi biologici o ecologici solitamente gli individui vengono osservati in un dato momento e vengono classificati in base alla specie di appartenenza. Si prenda ad esempio un campione di \emph{n} individui dall'insieme in esame e si ipotizzi di osservare un totale di $S_\emph{obs}$ specie: questo è il \emph{campione di riferimento}. Questo tipo di data-set può essere ottenuto usando due schemi di campionamento differenti:
+In molti studi biologici o ecologici solitamente gli individui vengono osservati in un dato momento e vengono classificati in base alla specie di appartenenza. Si prenda ad esempio un campione di \emph{n} individui dall'insieme in esame e si ipotizzi di osservare un totale di $S^*$ specie: questo è il \emph{campione di riferimento}. Questo tipo di data-set può essere ottenuto usando due schemi di campionamento differenti:
 \begin{enumerate}
-    \item \emph{campionamento di tipo discreto} in cui l'unità campionaria è un individuo. Ad esempio, si campiona un numero fissato \emph{n} di individui in una certa area. Qui la grandezza del campione \emph{n} è fissata e ogni specie può essere rappresentata al massimo da \emph{n} individui;
+    \item \emph{campionamento di tipo discreto} in cui l'unità campionaria è un individuo. Ad esempio, si campiona un numero fissato $N^*$ di individui in una certa area. Qui la grandezza del campione \emph{n} è fissata e ogni specie può essere rappresentata al massimo da $N^*$ individui;
     
     \item \emph{campionamento di tipo continuo} nel quale il campione viene quantificato misurando su scale continue come tempo, area o volume d'acqua.
     Si fissa, per esempio, una certa area da studiare o un certo periodo di tempo nel quale analizzare il sito in esame. Con questo protocollo di campionamento il numero di individui osservati è una variabile casuale e ogni specie può essere rappresentata da un numero qualsiasi di individui.

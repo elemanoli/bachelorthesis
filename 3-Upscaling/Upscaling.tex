@@ -58,7 +58,7 @@ Sia $ P(\emph{n}|1)=\emph{c}(\emph{r},\xi)\mathcal{P}(\emph{n}|\emph{r},\xi) $ l
 Se $\mathcal{P}(\emph{k}|\emph{n,p})=\mathcal{P}_\emph{binom}(\emph{k}|\emph{n},\emph{p})$ segue una distribuzione binomiale, allora la RSA $\mathcal{P}_\emph{sub}(\emph{k}|\emph{p})$ alla scala di campionamento \emph{p} è ancora una binomiale negativa per $\emph{k}\ge1$ con il parametro $\xi$ riscalato e lo stesso \emph{r}:
 \\ \\
 \begin{equation}
-    \mathcal{P}_\emph{sub}(\emph{k}|\emph{p})=\begin{cases} \emph{c}(\emph{r},\xi)\emph{P}(\emph{k}|\emph{r},\hat \xi_\emph{p}), & \mbox{ }\emph{k}\ge1 \\ 1-\emph{c}(\emph{r},\xi)/\emph{c}(\emph{r},\hat\xi_{\emph{p}}), & \mbox{ }\mbox{\emph{k=0}}
+    \mathcal{P}_\emph{sub}(\emph{k}|\emph{p})=\begin{cases} \emph{c}(\emph{r},\xi)\mathcal{P}(\emph{k}|\emph{r},\hat \xi_\emph{p}), & \mbox{ }\emph{k}\ge1 \\ 1-\emph{c}(\emph{r},\xi)/\emph{c}(\emph{r},\hat\xi_{\emph{p}}), & \mbox{ }\mbox{\emph{k=0}}
     \end{cases}
 \label{eq:RSAbinom}
 \end{equation}
@@ -155,7 +155,7 @@ Notiamo che, se si assume che la RSA segua una distribuzione binomiale negativa 
 Questo modello naque nei primi anni '40 quando il chimico e naturalista britannico Alexander Steven Corbet, dopo aver trascorso due anni in Malesia a studiare e catalogare le specie di farfalle, tornò in Inghilterra e mostrò i suoi dati al collega Ronald Aylmer Fisher. Corbet si chiese quante nuove specie avrebbe trovato se fosse tornato in Malesia per altri due anni. Per rispondere a questa domanda, il padre della statistica Fisher fu il primo matematico ad affrontare il problema della stima del numero di specie, che da quel momento ha trovato larghe applicazioni in vari campi scientifici. Dunque in questo contesto Fisher ha introdotto la distribuzione che da lui prende nome e che viene molto utilizzata in teoria dell'ecologia per descrivere la RSA di un ecosistema, ovvero la distribuzione logaritmica di parametro \emph{x} \cite{Fisher1943}:
 
 \begin{equation}
-P(\emph{n}|1)=P(\emph{n}|\emph{x})=\alpha(\emph{x})\frac{\emph{x}^\emph{n}}{\emph{n}}, \ \alpha(x)=-(\log(1-\emph{x}))^{-1},
+P(\emph{n}|1)=P^\emph{LS}(\emph{n}|\emph{x})=\alpha(\emph{x})\frac{\emph{x}^\emph{n}}{\emph{n}}, \ \alpha(x)=-(\log(1-\emph{x}))^{-1},
 \end{equation}
 dove $\alpha(x)$ è la costante di normalizzazione.
 Assumendo anche questa volta che la RSA del campione non sia affetta da correlazioni spaziali si trova che anche la distribuzione logaritmica, essendo un caso particolare della distribuzione binomiale negativa, soddisfa la proprietà di invarianza.
