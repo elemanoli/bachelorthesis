@@ -82,7 +82,7 @@ Inoltre sono state calcolate le RSA predette a scala globale a partire dai param
     \end{minipage}
 \end{figure}
 
-Abbiamo poi ottenuto un altro tipo di sottocampioni, per ognuno dei due campioni, selezionando casualmente per $100$ volte il $10 \%, 20 \%,...,90 \%$ degli individui. A partire da questi sono state calcolate, in media, il numero di specie predette alla scala globale con entrambi i metodi parametrici. Vediamo che il metodo della binomiale negativa predice correttamente il numero di specie anche partendo da campioni a scale ridotte, mentre quello della distribuzione logaritmica si avvicina al valore vero man mano che la scala del campione aumenta.
+Abbiamo sotto-campionato ognuno dei due campioni, selezionando casualmente per $100$ volte il $10 \%, 20 \%,...,90 \%$ degli individui. Per ogni sottocampione è stato poi calcolato il numero di specie predette alla scala globale. In figura \ref{fig:predSpH} e \ref{fig:rsapredC} abbiamo inserito i grafici del numero medio predetto ad ogni sotto-scala per l'individuo sano e malato. Vediamo che il metodo della binomiale negativa predice correttamente il numero di specie anche partendo da campioni a scale ridotte, mentre quello della distribuzione logaritmica si avvicina al valore vero solo per scale molto grandi.
 
 \begin{figure}[H]
   \centering
@@ -163,7 +163,7 @@ Assumendo per la RSA una forma binomiale negativa e fittando il corrispondente p
 \label{Tab:parametriNB}
 \end{table}
 
-assumendo invece una distribuzione logaritmica otteniamo:
+Assumendo invece una distribuzione logaritmica otteniamo:
 
 \begin{table}[H]
 \centering
@@ -179,7 +179,7 @@ assumendo invece una distribuzione logaritmica otteniamo:
 
 dove $\xi$ e $x$ sono i parametri delle distribuzione a scala globale calcolati con le equazioni (\ref{eq:NBparameter}) e (\ref{eq:LSparameter}) rispettivamente.
 
-Le RSA delle specie predette, alla scala del campione, utilizzando le distribuzioni di parametri quelli ottenuti dai fit (tabelle \ref{Tab:parametriNB} e \ref{Tab:parametriLS}) hanno il seguente andamento:
+In figura \ref{fig:plotRSAH} e \ref{fig:plotRSAC} possiamo vedere le RSA ottenute fittando i parametri alla scala del campione (tabelle \ref{Tab:parametriNB} e \ref{Tab:parametriLS}).
 
 \begin{figure}[H]
   \centering
@@ -196,12 +196,12 @@ Le RSA delle specie predette, alla scala del campione, utilizzando le distribuzi
   \end{minipage}
 \end{figure}
 
-Per calcolare il numero di specie predetto ad una data abbondanza $k$ abbiamo calcolato le (\ref{eq:NBprobability}) e (\ref{eq:fisherdist}) di parametri ottenuti dai fit per $n=k$ e moltiplicato il risultato per il numero di specie presenti nel campione di riferimento.
+Per calcolare il numero di specie con una data abbondanza $k$ abbiamo calcolato le (\ref{eq:NBprobability}) e (\ref{eq:fisherdist}) di parametri ottenuti dai fit per $n=k$ e moltiplicato il risultato per il numero di specie presenti nel campione di riferimento.
 
 
 Anche in questo caso, a differenza della distribuzione logaritmica, la binomiale negativa riproduce la reale distribuzione delle specie.
 
-Il numero di specie predetto da ognuno dei due modelli è riportato nella seguente tabella:
+Abbiamo poi calcolato il numero di specie predetto alla scala globale, $p=1$, ottenendo i risultati mostrati nella seguente tabella:
 
 \begin{table}[H]
 \centering

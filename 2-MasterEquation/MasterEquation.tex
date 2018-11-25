@@ -1,7 +1,9 @@
 \chapter{Derivazione delle distribuzioni binomiale negativa e logaritmica}
 Nel modello parametrico analizzato in questo lavoro, assumeremo che la SAD sia ben descritta da una binomiale negativa.
-Prima di entrare nel merito dei modelli per la stima del numero di specie, vediamo come si può ricavare tale distribuzione (come anche la distribuzione logaritmica, molto utilizzata in ecologia), modellizzando la dinamica dell'abbondanza delle specie attraverso un'equazione che descrive la nascita e la morte degli individui, la \emph{birth-death master equation}\cite{2016AzaelePeruzzo}.\\
-Entrambe le distribuzioni possono essere derivate da principi alla base dei processi biologici: sia $\emph{P}_{\emph{n,s}}(t)$ la probabilità che ad un certo tempo $t$, la specie \emph{s} abbia esattamente \emph{n} individui, con $\emph{s}\in\left \{ 1,...,S \right \}$. Assumiamo che la dinamica della popolazione di ogni specie sia governata da due termini: i rate di nascita e di morte, rispettivamente, $\emph{b}_\emph{{n,s}}$ e $\emph{d}_\emph{{n,s}}$, per ogni specie \emph{s} con \emph{n} individui.
+Prima di entrare nel merito dei modelli per la stima del numero di specie, vediamo come si può ricavare tale distribuzione (come anche la distribuzione logaritmica, molto utilizzata in ecologia), modellizzando la dinamica stocastica dell'abbondanza delle specie nota come \emph{birth-death master equation}\cite{2016AzaeleSuweis}.\\
+Entrambe le distribuzioni (logaritmica e binomiale negativa) possono essere derivate da processi ecologici fondamentali quale appunti nascita, morte e migrazione. 
+
+Sia $\emph{P}_{\emph{n,s}}(t)$ la probabilità che ad un certo tempo $t$, la specie \emph{s} abbia esattamente \emph{n} individui, con $\emph{s}\in\left \{ 1,...,S \right \}$. Assumiamo che la dinamica della popolazione di ogni specie sia governata da due termini: i rate di nascita e di morte, rispettivamente, $\emph{b}_\emph{{n,s}}$ e $\emph{d}_\emph{{n,s}}$, per ogni specie \emph{s} con \emph{n} individui.
 L'equazione che regola l'evoluzione di $\emph{P}_{\emph{n,s}}(t)$ per $\emph{n}\ge0$ è la seguente:
 \begin{equation}
 \frac{\partial\emph{P}_{\emph{n,s}}(t)}{\partial\emph{t}}=
