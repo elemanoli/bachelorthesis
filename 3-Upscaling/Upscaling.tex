@@ -20,7 +20,7 @@ Nella nostra analisi assumiamo che la probabilità \emph{p} che un individuo si 
 %Di seguito analizzeremo in dettaglio le proprietà e i passaggi che ci permettono di ottenere le informazioni desiderate.\\
 Quando facciamo\emph{ upscaling} siamo interessati alla SAD ed al numero totale di specie presenti a scala globale, cioè in tutta l'area \emph{A} dell'ecosistema in esame.
 Denotiamo con $P(\emph{n}|1)$ la probabilità che una specie abbia esattamente \emph{n} individui a scala globale (con il numero 1 si intende l'intero ecosistema), anche nota come \emph{abbondanza relativa delle specie} (RSA).
-Notiamo che P(\emph{n}|1) deve essere definita solamente per $\emph{n}\ge1$ poiché per poter osservate una data specie questa deve essere popolata da almeno un individuo.\newline
+Notiamo che P(\emph{n}|1) deve essere definita solamente per $\emph{n}\ge1$ poiché per poter osservare una data specie questa deve essere popolata da almeno un individuo.\newline
 In questo metodo di \emph{upscaling} si ipotizza che la SAD segua una distribuzione binomiale negativa $\mathcal{P}(\emph{n}|\emph{r},\xi)$ di parametri (\emph{r},$\xi$):
 \\ 
 \begin{equation}
@@ -38,7 +38,7 @@ e
 \\ 
 dove \emph{c} è la costante di normalizzazione.
 Quest'ultima è stata calcolata imponendo \newline  $\sum_{\emph{n}=1}^\infty P(\emph{n}|1)=1$, dove la somma parte da 1 poiché  non si possono osservare specie con abbondanza nulla.
-Notiamo che invece $\mathcal{P}(\emph{n}|\emph{r},\xi)$è normalizzata per $\emph{n}\ge0$: questo perché nei campioni esiste una probabilità non nulla di che una specie presente nell'intero ecosistema abbia \emph{n}=0 individui. Dunque in questo modo si tiene conto del numero di specie mancanti nei campioni.\\
+Notiamo che invece $\mathcal{P}(\emph{n}|\emph{r},\xi)$è normalizzata per $\emph{n}\ge0$: questo perché all'interno dei campioni esiste una probabilità non nulla di che una specie presente nell'intero ecosistema abbia \emph{n}=0 individui. Dunque in questo modo si tiene conto del numero di specie mancanti nei campioni.\\
 Consideriamo ora un campione di area \emph{a} e definiamo \emph{p}=\emph{a}/\emph{A} la scala del campione, cioè la frazione di ecosistema osservato.
 Come primo passaggio calcoliamo la RSA del campione assumendo che quest'ultima non sia influenzata da correlazioni spaziali. Quest'ipotesi è ben soddisfatta ed è stata verificata usando dati di foreste generati \emph{in silico} a vari gradi di correlazione spaziale\cite{Tovoe1701438}.\\
 Sotto queste ipotesi la probabilità che una specie presenti \emph{k} individui in un'area \emph{a=pA}, condizionata dal fatto che presenta \emph{n} individui nella regione totale \emph{A} è data dalla distribuzione binomiale:
@@ -152,7 +152,7 @@ Notiamo che, se si assume che la RSA segua una distribuzione binomiale negativa 
   %\end{aligned}
 \section{Metodo della distribuzione logaritmica}
 %Ora mostreremo che è possibile risalire al numero di specie anche quando si suppone che la SAD a scala globale sia distribuita secondo una distribuzione di Fisher.\\
-Questo modello naque nei primi anni '40 quando il chimico e naturalista britannico Alexander Steven Corbet, dopo aver trascorso due anni in Malesia a studiare e catalogare le specie di farfalle, tornò in Inghilterra e mostrò i suoi dati al collega Ronald Aylmer Fisher. Corbet si chiese quante nuove specie avrebbe trovato se fosse tornato in Malesia per altri due anni. Per rispondere a questa domanda, il padre della statistica Fisher fu il primo matematico ad affrontare il problema della stima del numero di specie, che da quel momento ha trovato larghe applicazioni in vari campi scientifici. Dunque in questo contesto Fisher ha introdotto la distribuzione che da lui prende nome e che viene molto utilizzata in teoria dell'ecologia per descrivere la RSA di un ecosistema, ovvero la distribuzione logaritmica di parametro \emph{x} \cite{Fisher1943}:
+Questo modello naque nei primi anni '40 quando il chimico e naturalista britannico Alexander Steven Corbet, dopo aver trascorso due anni in Malesia a studiare e catalogare le specie di farfalle, tornò in Inghilterra e mostrò i suoi dati al collega Ronald Aylmer Fisher. Corbet si chiese quante nuove specie avrebbe trovato se fosse tornato in Malesia per altri due anni. Per rispondere a questa domanda, il padre della statistica Fisher fu il primo matematico ad affrontare il problema della stima del numero di specie, che da quel momento ha trovato larghe applicazioni in vari campi scientifici. Dunque in questo contesto Fisher introdusse la distribuzione che da lui prende nome e che viene molto utilizzata in teoria dell'ecologia per descrivere la RSA di un ecosistema, ovvero la distribuzione logaritmica di parametro \emph{x} \cite{Fisher1943}:
 
 \begin{equation}
 P(\emph{n}|1)=P^\emph{LS}(\emph{n}|\emph{x})=\alpha(\emph{x})\frac{\emph{x}^\emph{n}}{\emph{n}}, \ \alpha(x)=-(\log(1-\emph{x}))^{-1},
@@ -285,7 +285,7 @@ In questo caso non bisogna avere una stima del numero totale di individui $N$ ne
 \begin{figure}
 \centering
   \includegraphics[width=0.6\linewidth]{Figure/RSA.jpg}
-  \caption{\textbf{Rappresentazione schematica del modello di upscaling}. Questo consiste in tre passaggi. (\textbf{A}) Conosciamo l'abbondanza di $S^*$ specie alla scala di campionamento $\emph{p}^*$. (\textbf{B}) Facciamo un fit della SAD con una binomiale negativa o una distribuzione logaritmica. (\textbf{C}) Usando i parametri del miglior fit ottenuti in (B) e usando le equazioni (\ref{eq:SalphaLS}) e (\ref{eq:upscaleNB}) per dedurre la biodiversità dell'intero ecosistema.\cite{Tovoe1701438} }
+  \caption{\textbf{Rappresentazione schematica dei modelli parametrici di upscaling}. Questi consistono in tre passaggi. (\textbf{A})Campionamento: conosciamo l'abbondanza di $S^*$ specie alla scala di campionamento $\emph{p}^*$. (\textbf{B})Fit: facciamo un fit della SAD con una binomiale negativa o una distribuzione logaritmica. (\textbf{C})Upscaling: usando i parametri del miglior fit ottenuti in (B) e usando le equazioni (\ref{eq:SalphaLS}) e (\ref{eq:upscaleNB}) deduciamo la biodiversità dell'intero ecosistema.\cite{Tovoe1701438} }
   \label{fig:RSA1}
 \end{figure}
 
