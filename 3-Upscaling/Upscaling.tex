@@ -1,5 +1,5 @@
 \chapter{Metodi di upscaling}
-Con il termine \emph{upscaling} si intende inferire informazioni "a scala più grande": in questo contesto significa predire il numero di specie presenti a scale più grandi di quelle che, per motivi pratici, possono essere indagate sperimentalmente e di cui si hanno dunque dati certi.\\
+Con il termine \emph{upscaling} si intende inferire informazioni "a scala più grande": in questo contesto significa predire il numero di specie presenti a scale più grandi di quelle che, per motivi pratici, possono essere indagate sperimentalmente e di cui si hanno dunque dati certi. Pendiamo ad esempio la foresta Amazzonica, la sua estensione è talmente vasta che è possibile campionare solamente una piccolissima percentuale di essa ($p^*=0.00016 \%$)\cite{Tovoe1701438}.\\
 In questa sezione vediamo in dettaglio come è possibile ricostruire la biodiversità di un intero ecosistema a partire da un campione ridotto di SAD, occupandoci del caso in cui ad essere studiata è una frazione dell'area totale del sistema in esame.\\
 Analizzeremo prima due metodi parametrici, quello della binomiale negativa e della distribuzione logaritmica di Fisher \cite{Tovoe1701438}, e poi un metodo non parametrico, quello dello stimatore di $Chao_\emph{wor}$\cite{Chaowor}.
 
@@ -68,7 +68,7 @@ con
     \hat\xi_{\emph{p}}=\frac{\emph{p}\xi}{1-\xi(1-\emph{p})}.
 \label{eq:NBparametersub}
 \end{equation}
-Infatti la probabilità $P_\mathcal{sub}(\emph{k}|\emph{p})$ di trovare una specie popolata da $\emph{k} \ge 0$ individui nel campione di area \emph{a}=\emph{p}\emph{A} è:
+Infatti la probabilità $\mathcal{P}_{sub}(\emph{k}|\emph{p})$ di trovare una specie popolata da $\emph{k} \ge 0$ individui nel campione di area \emph{a}=\emph{p}\emph{A} è:
 %\begin{proof}
 
 \begin{equation}
@@ -277,6 +277,7 @@ Per dedurre in modo alternativo la biodiversità a scala globale, analogamente a
 
 \begin{equation}
    S=\frac{S^*}{1-\emph{P}_\emph{sub}^\emph{LS}(\emph{k=0}|\emph{p}^*)}=S^*\frac{\log(1-\emph{x})}{\log(1-\emph{$\hat x$}_{\emph{p}^*})}.
+   \label{eq:upscalingLS}
 \end{equation}
 
 In questo caso non bisogna avere una stima del numero totale di individui $N$ nell'area \emph{A}. È stato verificato su dati riguardanti la biodiversità nelle foreste che i due metodi restituiscono previsioni equivalenti\cite{Tovoe1701438}.
@@ -293,8 +294,8 @@ In questo caso non bisogna avere una stima del numero totale di individui $N$ ne
 Introduciamo ora il metodo non parametrico sviluppato da Chao, nato nell'ambito di uno schema di campionamento senza reinserimento. Il pedice \emph{wor} sta infatti per "\emph{without repetition}". Questo è il sistema di indagine più usato quando si devono campionare individui che non si desidera osservare ripetutamente (ad esempio nello studio delle foreste, nel quale gli alberi vengono censiti in piccole aree che sono selezionate senza ripetizione). In questo schema di campionamento ogni individuo o ogni unità di campionamento possono essere indagati una sola volta.\\
 Assumiamo che in un ecosistema ci siano $S$ specie indicizzate da 1 a $S$.
 Sia $N_\emph{i}$ (abbondanza assoluta) il numero di individui appartenenti alla \emph{i}-esima specie, \emph{i}=1,...,S, e $N_\emph{i}>0$. La popolazione totale dunque è data da $N=\sum_{\emph{i}=1}^{S} N_\emph{i}$. Assumiamo che la dimensione del campione $N$ sia nota, e che quindi sia nota anche la frazione di campionamento.\\
-Supponiamo di prendere dall'intero ecosistema un campione di \emph{n} individui, campionandoli senza reinserimento. Sia $X_\emph{i}$ la frequenza della specie campionata cioè il numero di individui della \emph{i}-esima specie osservati nel campione. Solo le specie con  $X_\emph{i}>0$ sono osservabili nel campione. Sia $S^*_\emph{k}$ il numero di specie nel campione che sono rappresentate esattamente da \emph{k} individui, dunque $S^*_0$ denota il numero di specie che non sono state osservate nel campione. Dunque abbiamo che $\emph{n}=\sum_{\emph{i}=1}^S X_\emph{i}=\sum_{\emph{k}>1} \emph{k}S^*_\emph{k}$.
-Definiamo $\emph{p}^*=\emph{n}/N$ la frazione di campionamento e $S^*$ il numero di specie osservate nel campione, $S^*=\sum_{\emph{k>1}} S^*_\emph{k}$.\\
+Supponiamo di prendere dall'intero ecosistema un campione di $N^*$ individui, campionandoli senza reinserimento. Sia $X_\emph{i}$ la frequenza della specie campionata cioè il numero di individui della \emph{i}-esima specie osservati nel campione. Solo le specie con  $X_\emph{i}>0$ sono osservabili nel campione. Sia $S^*_\emph{k}$ il numero di specie nel campione che sono rappresentate esattamente da \emph{k} individui, dunque $S^*_0$ denota il numero di specie che non sono state osservate nel campione. Dunque abbiamo che $\emph{n}=\sum_{\emph{i}=1}^S X_\emph{i}=\sum_{\emph{k}>1} \emph{k}S^*_\emph{k}$.
+Definiamo $\emph{p}^*=N^*/N$ la frazione di campionamento e $S^*$ il numero di specie osservate nel campione, $S^*=\sum_{\emph{k>1}} S^*_\emph{k}$.\\
 Generalmente la probabilità che una specie venga rilevata, o rate di rilevamento, dipende sia dall'abbondanza della specie nel campione sia da caratteristiche specifiche degli individui come ad esempio il modo di spostarsi e muoversi all'interno dell'ambiente, colore, forma e dimensione.\\ Consideriamo dunque il caso generale in cui la probabilità di trovare un individuo possa variare a seconda della specie di appartenenza e indichiamola con $\theta_\emph{i}>0$ per la \emph{i}-esima specie.
 Sotto queste ipotesi, definendo $\emph{p}_\emph{i}=N_\emph{i}/N $ come l'abbondanza relativa, il rate di rilevamento per la \emph{i}-esima specie diventa $\psi_{\emph{i}}=\frac{N_\emph{i}\theta_\emph{i}}{\sum_{\emph{k}=1}^S N_\emph{k}\theta_\emph{k}}=\frac{\emph{p}_\emph{i}\theta_\emph{i}}{\sum_{\emph{k}=1}^S \emph{p}_\emph{k}\theta_\emph{k}}$ con $\emph{i}=1,...,S$.
 Intuitivamente, il numero di individui che hanno la stessa possibilità di essere osservati è dato da $N_\emph{i}\psi_\emph{i}$, ma poiché questo potrebbe essere un numero non intero, definiamo una variabile a valori interi $Z_\emph{i}$, che rappresenta il numero di individui che hanno la stessa possibilità di essere osservati per la \emph{i}-esima specie. Siccome $Z\ge 1$ e la frazione di individui campionata è $\emph{n}/N$, si può modellare il vettore \textbf{Z}=($Z_1,Z_2,...,Z_S$) attraverso una distribuzione multinomiale troncata di parametri N e  ($\psi_1^*,\psi_2^*,...,\psi_S^*$), dove $\psi_\emph{i}^* = \psi_i / P  \left\{\emph{z}:\emph{z}_\emph{i} \ge 1 , \emph{i}=1,...,S \right\} $, \textbf{z}=($\emph{z}_1 , \emph{z}_2,...,\emph{z}_S$) e $\sum_{\emph{i}=1}^S \emph{z}_\emph{i}=N$. Per ogni dato valore di \textbf{z}=($\emph{z}_1 , \emph{z}_2,...,\emph{z}_S$), le frequenze con cui appaiono gli individui della specie \emph{i}-esima nel campione, ($X_1,X_2,...,X_S$), seguono una distribuzione ipergeometrica generalizzata:

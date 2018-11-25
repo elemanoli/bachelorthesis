@@ -47,3 +47,48 @@
 %\label{TAB:Esempio}
 %\end{table}
 
+In questo lavoro abbiamo analizzato alcuni dei modelli, detti metodi di \emph{upscalig}, nati in ambito ecologico, che permettono di fare previsioni sulla biodiversità di un intero ecosistema pur essendo a conoscenza solamente della composizione  di una minima parte di questo. Conoscendo il numero di individui, $N^*$, e il numero di specie, $S^*$, presenti alla scala $p^*$ in esame, abbiamo visto che, a seconda del metodo a cui si fa riferimento, può essere stimato il numero di specie, $S$, alla scala globale con:
+
+\begin{itemize}
+    \item la (\ref{eq:upscaleNB}) se si assume che la RSA segua una distribuzione binomiale negativa
+    
+    $$S=S^*\frac{1-(1-\xi)^r}{1-(1-\hat \xi_{\emph{p}}^*)^r}; $$
+    
+    \item la (\ref{eq:SalphaLS}) o con la  (\ref{eq:upscalingLS}) se si assume che la RSA segua una distribuzione logaritmica di Fisher
+    
+    $$ S=\hat \alpha \log \left (1+ \frac{N}{\hat \alpha} \right ),$$ 
+    
+    $$   S=S^*\frac{\log(1-\emph{x})}{\log(1-\emph{$\hat x$}_{\emph{p}^*})};$$
+    
+    \item la (\ref{eq:chaoworestimator}) se utilizziamo il metodo non parametrico di $Chao_{wor}$
+    
+    $$ S= S^* +\frac{{S^*_1}^2}{\frac{\emph{n}}{\emph{n}-1}2S^*_2+ \frac{\emph{p}^*}{1-\emph{p}^*}S^*_1}.$$
+\end{itemize}
+
+In seguito abbiamo messo in evidenza l'analogia che esiste tra le specie assenti nel campione di riferimento in ecologia, e le specie le cui reads non vengono classificate nell'ambito delle comunità microbiche. 
+%Infatti con i metodi di classificazione tassonomica si riescono a ricostruire i DNA delle specie presenti all'interno di un campione, ma non tutte le sequenze trovano corrispondenza nei database in cui sono raccolte le informazioni sul DNA delle specie conosciute.
+Alla luce di questa analogia abbiamo applicato i metodi descritti a dati metagenomici riguardanti la popolazione batterica dell'intestino di un individuo sano e di un altro affetto dal morbo di Crohn.\\
+I test e le analisi condotte su questi campioni hanno rivelato che:
+\begin{itemize}
+    \item il metodo $Chao_{wor}$ non può essere applicato a dati di questo tipo;
+    \item il metodo della distribuzione logaritmica di Fisher fa buone previsioni se la scala del campione di riferimento non si allontana troppo da quella globale (figure \ref{fig:predSpH} e \ref{fig:predSpC}), ma in nessun caso riesce a riprodurre l'andamento della RSA del sistema in esame (figure \ref{fig:plotRSAH} e \ref{fig:plotRSAC});
+    \item il metodo della binomiale negativa fa previsioni ottime (figure \ref{fig:predSpH} e \ref{fig:predSpC}) e riproduce l'andamento della RSA del sistema in esame (figure \ref{fig:plotRSAH} e \ref{fig:plotRSAC}).
+    
+\end{itemize}
+
+Alcune possibili applicazioni di quanto analizzato in questo lavoro potrebbero essere:
+
+\begin{itemize}
+
+    \item utilizzare il metodo della binomiale per ricostruire l'abbondanza relativa delle specie in comunità microbiche. Questo può portare a dei miglioramenti delle cure somministrate ai pazienti, infatti avere informazioni complete sulla comunità che ospita il batterio causa del disturbo può cambiare e migliorare l'approccio clinico adottato;
+    
+    \item utilizzare le informazioni che si possono ottenere dalle RSA previste per monitorare i cambiamenti nella composizione del microbioma degli individui, ad esempio in casi di infezione e malattia o durante la somministrazione di antibiotici;
+    
+    \item studiare le differenze nelle popolazioni di comunità batteriche di individui con diverse storie cliniche.
+    
+
+\end{itemize}
+
+%Una possibile applicazione di quanto analizzato in questo lavoro potrebbe essere quella di utilizzare i metodi di \emph{upscaling}, già fortemente affermati in ecologia, per ricostruire l'abbondanza relativa delle specie in comunità microbiche. Questo può portare a dei miglioramenti delle cure somministrate ai pazienti, infatti informazioni complete sulla comunità che ospita il batterio causa del disturbo può cambiare e migliorare l'approccio clinico adottato. 
+
+Per concludere, con questo lavoro abbiamo voluto mostrare come i metodi di \emph{upscaling}, sviluppati e molto utilizzati in ambito ecologico, possano dare interessanti contributi anche nell'ambito delle comunità batteriche. 

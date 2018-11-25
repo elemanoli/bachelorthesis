@@ -41,7 +41,7 @@ Analizzando i risultati dei test abbiamo notato i seguenti fatti:
     
 \end{itemize}
 
-Sono stati calcolati gli errori percentuali sulle specie predette alla scala globale da ognuno dei 100 sottocampioni. Per il metodo della binomiale negativa questi sono dell'ordine dello $0.01 \%$ e del $2.5 \%$ rispettivamente per l'individuo sano e per l'individuo malato. Il metodo della distribuzione logaritmica produce invece degli errori significativamente grandi.
+Sono stati calcolati gli errori percentuali sulle specie predette alla scala globale da ognuno dei 100 sottocampioni. Per il metodo della binomiale negativa questi sono dell'ordine dello $0.01 \%$ e del $2.5 \%$ rispettivamente per l'individuo sano e per l'individuo malato. Il metodo della distribuzione logaritmica produce invece degli errori significativamente grandi: poiché il numero di individui e il numero di specie sono uguali per ogni sottocampione, per ognuna delle $100$ prove questo metodo predice, attraverso le equazioni (\ref{eq:solve}) e (\ref{eq:SalphaLS}), lo stesso numero di specie e dunque gli errori percentuali sono uguali. Questi risultano dell' $ 85 \%$ per l'individuo sano e dell' $ 83 \% $ per l'individuo malato.
 
 \begin{figure}[H]
   \centering
@@ -58,40 +58,45 @@ Sono stati calcolati gli errori percentuali sulle specie predette alla scala glo
   \end{minipage}
 \end{figure}
 
-Questi errori sono stati calcolati anche per il metodo della distribuzione logaritmica: poiché il numero di individui e il numero di specie sono uguali per ogni sottocampione, per ognuna delle $100$ prove questo metodo predice, attraverso le equazioni (\ref{eq:solve}) e (\ref{eq:SalphaLS}), lo stesso numero di specie e dunque gli errori percentuali sono uguali. Questi risultano dell' $ 85 \%$ per l'individuo sano e dell' $ 83 \% $ per l'individuo malato.
-
 Inoltre sono state calcolate le RSA predette a scala globale a partire dai parametri stimati alla scala dei sottocampioni. Si nota che i punti ottenuti per la binomiale negativa riproducono l'andamento della RSA a scala globale, mentre quelli ottenuti per la distribuzione logaritmica non ne predicono il picco.
+%\begin{figure}
+%\centering
+  %\includegraphics[width=0.6\linewidth]{Figure/RSA.jpg}
+  %\caption{\textbf{Rappresentazione schematica del modello di upscaling}. Questo consiste in tre passaggi. (\textbf{A}) Conosciamo l'abbondanza di $S^*$ specie alla scala di campionamento $\emph{p}^*$. (\textbf{B}) Facciamo un fit della SAD con una binomiale negativa o una distribuzione logaritmica. (\textbf{C}) Usando i parametri del miglior fit ottenuti in (B) e usando le equazioni (\ref{eq:SalphaLS}) e (\ref{eq:upscaleNB}) per dedurre la biodiversità dell'intero ecosistema.\cite{Tovoe1701438} }
+ % \label{fig:RSA1}
+%\end{figure}
+
 
 \begin{figure}[H]
   \centering
-  \begin{minipage}[b]{0.4\textwidth}
+  \begin{minipage}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{Figure/rsapredH.eps}
     \caption{RSA predetta per individuo sano. Le previsioni della binomiale negativa riproducono l'andamento reale mentre quelle della distribuzione logaritmica falliscono nel riprodurre il picco.}
     \label{fig:rsapredH}
-  \end{minipage}
+   \end{minipage}
   \hfill
-  \begin{minipage}[b]{0.4\textwidth}
+  \begin{minipage}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{Figure/rsapredC.eps}
     \caption{RSA predetta per individuo malato. Le previsioni della binomiale negativa riproducono l'andamento reale mentre quelle della distribuzione logaritmica falliscono nel riprodurre il picco.}
     \label{fig:rsapredC}
-  \end{minipage}
+    \end{minipage}
 \end{figure}
 
 Abbiamo poi ottenuto un altro tipo di sottocampioni, per ognuno dei due campioni, selezionando casualmente per $100$ volte il $10 \%, 20 \%,...,90 \%$ degli individui. A partire da questi sono state calcolate, in media, il numero di specie predette alla scala globale con entrambi i metodi parametrici. Vediamo che il metodo della binomiale negativa predice correttamente il numero di specie anche partendo da campioni a scale ridotte, mentre quello della distribuzione logaritmica si avvicina al valore vero man mano che la scala del campione aumenta.
 
 \begin{figure}[H]
   \centering
-  \begin{minipage}[b]{0.4\textwidth}
+    \begin{minipage}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{Figure/cfrpredSpH.eps}
     \caption{Individuo sano. Specie predette a scala globale.}
     \label{fig:predSpH}
-  \end{minipage}
-  \hfill
-  \begin{minipage}[b]{0.4\textwidth}
+    \end{minipage}
+\hfill
+  \begin{minipage}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{Figure/cfrpredSpC.eps}
 \caption{Individuo malato. Specie predette a scala globale.}
 \label{fig:predSpC}
-  \end{minipage}
+\end{minipage}
 \end{figure}
 
 Alla luce dei risultati dei test applichiamo ai nostri campioni solo i due metodi parametrici.\newline
@@ -110,18 +115,18 @@ Alla luce dei risultati dei test applichiamo ai nostri campioni solo i due metod
 %\end{table}
 
 \subsection{Risultati di \emph{upscaling}}
-Nelle seguenti figure sono rappresentate le RSA dei due campioni. Questi istogrammi, detti \emph{Preston Plot}, rappresentano la distribuzione relativa delle specie raggruppando nell'asse delle ascisse il logaritmo in base due del numero di individui e mostrando nell'asse delle ordinate il numero di specie per ogni classe, cioè per ogni \emph{Preston Class}. 
+Nelle seguenti figure sono rappresentate le RSA dei due campioni. Questi istogrammi, detti \emph{Preston Plot}, rappresentano la distribuzione relativa delle specie raggruppando nell'asse delle ascisse il logaritmo in base due del numero di individui e mostrando nell'asse delle ordinate il numero di specie per ogni classe, cioè per ogni \emph{Preston Class}. Fare un istogramma di Preston significa costruire un sistema di suddivisione in categorie di abbondanze che raddoppiano ($1,2,4,8,16...$) e contare quante specie appartengono alle varie classi. Le specie che hanno esattamente $1,2,8,16..$ individui vanno divise equamente tra le due categorie adiacenti. Questo tipo di classificazione delle specie trasforma effettivamente i dati di abbondanza relativa delle specie nel loro logaritmo in base $2$.
 
 
 \begin{figure}[H]
   \centering
-  \begin{minipage}[b]{0.4\textwidth}
+  \begin{minipage}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{Figure/RSAH.eps}
     \caption{RSA individuo sano.}
     \label{fig:RSAH}
   \end{minipage}
   \hfill
-  \begin{minipage}[b]{0.4\textwidth}
+  \begin{minipage}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{Figure/RSAC.eps}
     \caption{RSA individuo malato.}
     \label{fig:RSAC}
@@ -151,8 +156,8 @@ Assumendo per la RSA una forma binomiale negativa e fittando il corrispondente p
 \begin{tabular}{l|l|l|l|}
 \cline{2-4}
                                      & \textit{r}    & $\mathbf{\hat \xi}_{p^*}$                & $\mathbf{\xi}$             \\ \hline
-\multicolumn{1}{|l|}{\textbf{Sano}}  & $2.4 \pm 0.4$ & $0.9994 \pm 0.0001$ & $0.999861 \pm $ \\ \hline
-\multicolumn{1}{|l|}{\textbf{Crohn}} & $1.2 \pm 0.3$ & $0.99975 \pm0.00007 $     & $0.9999 \pm $ \\ \hline
+\multicolumn{1}{|l|}{\textbf{Sano}}  & $2.4 \pm 0.4$ & $0.9994 \pm 0.0001$ & $0.99986 \pm0.00003 $ \\ \hline
+\multicolumn{1}{|l|}{\textbf{Crohn}} & $1.2 \pm 0.3$ & $0.99975 \pm0.00007 $     & $0.99985 \pm0.00004 $ \\ \hline
 \end{tabular}
 \caption{Parametri Binomiale Negativa.}
 \label{Tab:parametriNB}
@@ -165,8 +170,8 @@ assumendo invece una distribuzione logaritmica otteniamo:
 \begin{tabular}{l|l|l|}
 \cline{2-3}
                                      & $\hat x_{p^*}$                    & $x$ \\ \hline
-\multicolumn{1}{|l|}{\textbf{Sano}}  & $0.999 \pm 0.002$     &   \\ \hline
-\multicolumn{1}{|l|}{\textbf{Crohn}} & $0.99998 \pm 0.00002$ &   \\ \hline
+\multicolumn{1}{|l|}{\textbf{Sano}}  & $0.999 \pm 0.002$     & $ 0.999995 \pm 0.000004$ \\ \hline
+\multicolumn{1}{|l|}{\textbf{Crohn}} & $0.99998 \pm 0.00002$ & $ 0.99999 \pm0.00001$  \\ \hline
 \end{tabular}
 \caption{Parametri Distribuzione Logaritmica.}
 \label{Tab:parametriLS}
@@ -178,18 +183,20 @@ Le RSA delle specie predette, alla scala del campione, utilizzando le distribuzi
 
 \begin{figure}[H]
   \centering
-  \begin{minipage}[b]{0.4\textwidth}
+  \begin{minipage}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{Figure/rsaplotH.eps}
     \caption{RSA individuo sano: Preston Plot e curve di fit.}
     \label{fig:plotRSAH}
   \end{minipage}
   \hfill
-  \begin{minipage}[b]{0.4\textwidth}
+  \begin{minipage}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{Figure/rsaplotC.eps}
     \caption{RSA individuo malato: Preston Plot e curve di fit.}
     \label{fig:plotRSAC}
   \end{minipage}
 \end{figure}
+
+
 
 Anche in questo caso, a differenza della distribuzione logaritmica, la binomiale negativa riproduce la reale distribuzione delle specie.
 
@@ -207,3 +214,5 @@ Il numero di specie predetto da ognuno dei due modelli è riportato nella seguen
 \label{Tab:risultatiup}
 \end{table}
 
+Notiamo che, sia per l'individuo sano sia per quello affetto da morbo di Crohn, con il metodo della binomiale negativa il numero di specie predette alla scala globale coincide con il numero di specie realmente presenti nel campione, mentre il numero predetto dal metodo della distribuzione di Fisher si discosta poco dal valore di $S^*$.\\
+Questi risultati sono ragionevoli se si guarda la SAR dei campioni. Per entrambi i campioni abbiamo selezionato casualmente, per ognuna delle scale del $10\%,20\%,...,90\%$, 100 sottocampioni. In media, ad ogni scala, si trova che il numero di specie presenti nei sottocampioni coincide con quello delle specie presenti alla scala del campione di riferimento. I risultati di \emph{upscaling} sono dunque compatibili con questa evidenza. 
