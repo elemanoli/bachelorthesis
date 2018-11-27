@@ -1,7 +1,7 @@
 \chapter{Derivazione delle distribuzioni binomiale negativa e logaritmica}
 Nel modello parametrico analizzato in questo lavoro, assumeremo che la SAD sia ben descritta da una binomiale negativa.
 Prima di entrare nel merito dei modelli per la stima del numero di specie, vediamo come si può ricavare tale distribuzione (come anche la distribuzione logaritmica, molto utilizzata in ecologia), modellando la dinamica stocastica dell'abbondanza delle specie attraverso la così detta \emph{birth-death master equation}\cite{2016AzaeleSuweis}.\\
-Entrambe le distribuzioni (logaritmica e binomiale negativa) possono essere derivate da processi ecologici fondamentali quale appunti nascita, morte e migrazione. 
+Entrambe le distribuzioni (logaritmica e binomiale negativa) possono essere derivate da processi ecologici fondamentali quali appunto nascita, morte e migrazione. 
 
 Sia $\emph{P}_{\emph{n,s}}(t)$ la probabilità che ad un certo tempo $t$, la specie \emph{s} abbia esattamente \emph{n} individui, con $\emph{s}\in\left \{ 1,...,S \right \}$. Assumiamo che la dinamica della popolazione di ogni specie $s=1,2,...,S$ con popolazione $n$ sia governata dai rates di nascita e di morte, rispettivamente, $\emph{b}_\emph{{n,s}}$ e $\emph{d}_\emph{{n,s}}$.
 L'equazione che regola l'evoluzione di $\emph{P}_{\emph{n,s}}(t)$ per $\emph{n}\ge0$ sarà quindi:
@@ -50,7 +50,7 @@ Dunque la probabilità che una specie \emph{s} abbia \emph{n} individui all'equi
 Sotto l'ipotesi della teoria neutrale secondo la quale le specie sono considerate demograficamente equivalenti, possiamo rimuovere l'indice \emph{s} di specie dall'equazione sopra, ottenendo così una SAD per l'ecosistema in esame. Notiamo che quindi in questo framework, la dinamica della popolazione della specie è determinata puramente da processi demografici random (nascita, morte e migrazione) e ogni specie rappresenta una diversa realizzazione dello stesso processo stocastico.
 
 \section{Distribuzione logaritmica di Fisher}
-Notiamo che, scegliendo in modo diverso il termine $\emph{b}_\emph{n,s}$, si può ottenere semore attraverso la \emph{birth-death master equation} (\ref{eq:master}), un'altra importante distribuzione: la distribuzione logaritmica di Fisher.
+Notiamo che, scegliendo in modo diverso il termine $\emph{b}_\emph{n,s}$, si può ottenere sempre attraverso la \emph{birth-death master equation} (\ref{eq:master}), un'altra importante distribuzione: la distribuzione logaritmica di Fisher.
 Consideriamo ora nella dinamica della comunità ecologica anche il fenomeno di speciazione (cioè l'entrata di nuove specie nel sistema dovute a mutazioni, invece che a migrazione da comunità esterne). La speciazione avverrà con un rate molto piccolo $\nu$, e si avrà:
 \begin{equation}
     \emph{b}_\emph{n,s}=\emph{b}_\emph{s}n+\delta_\emph{n,0}\nu.
